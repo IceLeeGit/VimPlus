@@ -156,17 +156,20 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "开始使用Vundle的必须配置
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
+"set rtp+=~/.vim/bundle/Vundle.vim/
+"call vundle#rc()
 
-Plugin 'vim-airline/vim-airline'                                                                                                                                                        
-Plugin 'vim-airline/vim-airline-themes'
-"Bundle 'gmarik/vundle'
-"Bundle 'Lokaltog/vim-powerline'
+call plug#begin('~/.vim/plugged')
+call pathogen#infect('~/.vim/plugged/{}')
+
+Plug 'vim-airline/vim-airline'                                                                                                                                                        
+Plug 'vim-airline/vim-airline-themes'
+"Plug 'gmarik/vundle'
+"Plug 'Lokaltog/vim-powerline'
 "set laststatus=2
 "let g:Powline_symbols='fancy'
 
-Bundle 'taglist.vim'
+Plug 'vim-scripts/taglist.vim'
 "let Tlist_Use_Left_Window = 1
 let Tlist_Use_Right_Window=1
 let Tlist_File_Fold_Auto_Close = 1
@@ -180,7 +183,7 @@ nmap <silent>tl :TlistToggle<cr>
 "END Taglist
 
 
-Bundle 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 map <C-n> :NERDTreeToggle<CR>
 ""当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -207,15 +210,15 @@ let g:NERDTreeIndicatorMapCustom = {
 " END Nerdtree
 
 
-Bundle 'vim-scripts/winmanager'
+Plug 'vim-scripts/winmanager'
 
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
-Plugin 'mbriggs/mark.vim'
+Plug 'mbriggs/mark.vim'
 
 "文本对齐
-Plugin 'godlygeek/tabular'
-Plugin 'jacquesbh/vim-showmarks'
+Plug 'godlygeek/tabular'
+Plug 'jacquesbh/vim-showmarks'
 let showmarks_enable = 1
 let g:showmarks_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "let showmarks_ignore_type = "hqm"
@@ -223,21 +226,21 @@ let g:showmarks_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "let showmarks_hlline_upper = 1
 " END showmarks
 
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 "python补全
-Plugin 'rkulla/pydiction.git'
+Plug 'rkulla/pydiction'
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 3
 "END
 
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 colorscheme devbox-dark-256
 
 "注释代码
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
-Plugin 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 "ale
 "始终开启标志列
 let g:ale_sign_column_always = 0
@@ -277,7 +280,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strf
 "END ale
 
 "替换双引号
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 vmap " S"
 vmap ' S'
 vmap ` S`
@@ -290,31 +293,31 @@ vmap ) S)
 vmap > S>
 " END Surround
 
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType="context"
 let g:SuperTabRetainCompletionType=2
 "END  ctrl+p
 
 "Syntax
-Plugin 'justinmk/vim-syntax-extra'
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'justinmk/vim-syntax-extra'
+Plug 'octol/vim-cpp-enhanced-highlight'
 
-Plugin 'hdima/python-syntax'
+Plug 'hdima/python-syntax'
 let python_highlight_all = 1
 "END python syntax
 
-Plugin 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " For Python docstring.
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "代码补全
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "END
 
 
 "标记修改
-"Plugin 'chrisbra/changesPlugin'
+"Plug 'chrisbra/changesPlug'
 "let g:changes_autocmd=1
 "let g:changes_use_icons = 1
 " let g:changes_respect_SignColumn = 1
@@ -322,7 +325,7 @@ Plugin 'honza/vim-snippets'
 " END changes
 
 "Taglist 增强
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 " 启动时自动focus
 let g:tagbar_autofocus = 1
@@ -340,19 +343,19 @@ let g:tagbar_type_ruby = {
 \ }
 
 "if/end/endif/endfunction补全
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 
 "补全函数时在命令栏显示函数签名
-Plugin 'Shougo/echodoc.vim'
+Plug 'Shougo/echodoc.vim'
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
 "END echodoc
 
 "强化f和F键
-Plugin 'rhysd/clever-f.vim'
+Plug 'rhysd/clever-f.vim'
 
 "
-Plugin 'terryma/vim-smooth-scroll'
+Plug 'terryma/vim-smooth-scroll'
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
@@ -373,8 +376,8 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
 if version >= 800
-    Plugin 'ludovicchabant/vim-gutentags'
-    "Plugin 'skywind3000/gutentags_plus'
+    Plug 'ludovicchabant/vim-gutentags'
+    "Plug 'skywind3000/gutentags_plus'
     "let g:gutentags_trace = 1
 
     let g:gutentags_plus_switch = 0
@@ -421,14 +424,14 @@ if version >= 800
     let g:gutentags_auto_add_gtags_cscope = 0
 
     ""预览 quickfix 窗口 ctrl-w z 关闭
-    "Plugin 'skywind3000/vim-preview'
+    "Plug 'skywind3000/vim-preview'
     ""P 预览 大p关闭
     "autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
     "autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     "noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
     "noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
     "END.....gtags
-    Plugin 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim'
     " 自启动
     "let g:deoplete#enable_at_startup = 1
     "" smart case不解释
@@ -461,4 +464,4 @@ if version >= 800
     "let g:deoplete#ignore_sources._ = ['buffer', 'around']
     "END deoplete
 endif
-
+call plug#end()
