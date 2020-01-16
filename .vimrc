@@ -326,7 +326,7 @@ Plug 'honza/vim-snippets'
 
 "Taglist 增强
 Plug 'majutsushi/tagbar'
-nmap <F9> :TagbarToggle<CR>
+nmap <silent>tb :TagbarToggle<CR>
 " 启动时自动focus
 let g:tagbar_autofocus = 1
 
