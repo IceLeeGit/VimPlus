@@ -235,7 +235,7 @@ let g:pydiction_menu_height = 3
 "END
 
 Plug 'flazz/vim-colorschemes'
-colorscheme devbox-dark-256
+silent! colorscheme devbox-dark-256
 
 "注释代码
 Plug 'tomtom/tcomment_vim'
