@@ -7,3 +7,5 @@ git clone https://github.com/IceLeeGit/VimPlus.git
 cd ./VimPlus
 ./vimInstall.sh
 ```
+### 效果图
+![rendering](./screenshot/rendering.jpg)
