@@ -152,6 +152,29 @@ nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-c>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
+" 自定义函数                                                                        
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
+nnoremap <leader>c :call FindHeader()<CR>                                           
+function! FindHeader()                                                              
+    let targetfile = ""                                                             
+    let targetpath = expand("%:h")                                                  
+    let targetname = expand("%:t:r")                                                
+    let postfix = expand("%:e")                                                     
+    if postfix == "h"                                                               
+        let targetfile = targetname.'.c -o -name '.targetname.'.cc  -o -name '.targetname.'.cpp'
+    elseif postfix ==# "c" || postfix ==# "cc" || postfix ==# "cpp"                 
+        let targetfile = targetname.".h"                                            
+    else                                                                            
+        return                                                                      
+    endif                                                                           
+    let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)       
+    echo targetfiles                                                                
+    for onefile in split(targetfiles,'\n')                                          
+        silent exe ":e ".onefile                                                                                                                               
+    endfor                                                                          
+endfunction
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
