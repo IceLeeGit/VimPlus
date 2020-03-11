@@ -155,25 +155,45 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
 " 自定义函数                                                                        
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
-nnoremap <leader>c :call FindHeader()<CR>                                           
-function! FindHeader()                                                              
-    let targetfile = ""                                                             
-    let targetpath = expand("%:h")                                                  
-    let targetname = expand("%:t:r")                                                
-    let postfix = expand("%:e")                                                     
-    if postfix == "h"                                                               
+nnoremap <leader>c :call FindHeader()<CR>
+function! FindHeader()
+    let targetfile = ""
+    let targetpath = split(expand("%:h"),'src')[0]
+    let targetname = expand("%:t:r")
+    let postfix = expand("%:e")
+    if postfix == "h" || postfix == "hpp"
         let targetfile = targetname.'.c -o -name '.targetname.'.cc  -o -name '.targetname.'.cpp'
-    elseif postfix ==# "c" || postfix ==# "cc" || postfix ==# "cpp"                 
-        let targetfile = targetname.".h"                                            
-    else                                                                            
-        return                                                                      
-    endif                                                                           
-    let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)       
-    echo targetfiles                                                                
-    for onefile in split(targetfiles,'\n')                                          
-        silent exe ":e ".onefile                                                                                                                               
-    endfor                                                                          
+    elseif postfix ==# "c" || postfix ==# "cc" || postfix ==# "cpp"
+        let targetfile = targetname.".h"
+    else
+        return
+    endif
+    let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)
+
+    let file_list=split(targetfiles,'\n')
+    let files_len = len(file_list)
+    if files_len > 1
+        let first_str = "   "
+        let second_str = "     "
+        let input_list = ["C header file ".targetname.".*:",first_str.'#'.second_str.'filename']
+        let index = 1
+        while index <= files_len
+           let input_list += [first_str.index.second_str.file_list[index-1]] 
+           let index = index + 1
+        endwhile
+        let g:num_=inputlist(input_list)
+        if g:num_ > files_len || g:num_ < 1
+            return
+        endif
+    elseif files_len == 1
+        let g:num_ = 1
+    else
+        return
+    endif
+
+    silent exe ":e ".file_list[g:num_ -1]
 endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
