@@ -158,7 +158,7 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>c :call FindHeader()<CR>
 function! FindHeader()
     let targetfile = ""
-    let targetpath = split(expand("%:h"),'src')[0]
+    let targetpath = expand("%:h")
     let targetname = expand("%:t:r")
     let postfix = expand("%:e")
     if postfix == "h" || postfix == "hpp"
@@ -169,6 +169,10 @@ function! FindHeader()
         return
     endif
     let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)
+    if targetfiles == ""
+        let targetpath = split(targetpath,'src')[0]
+        let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)
+    endif
 
     let file_list=split(targetfiles,'\n')
     let files_len = len(file_list)
