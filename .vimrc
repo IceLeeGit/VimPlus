@@ -261,7 +261,6 @@ Plug 'vim-scripts/winmanager'
 Plug 'VundleVim/Vundle.vim'
 Plug 'mbriggs/mark.vim'
 
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 
 "文本对齐
 Plug 'godlygeek/tabular'
@@ -428,6 +427,8 @@ nnoremap <leader>l :Tab /\|<cr>
 nnoremap <leader>= :Tab /=<cr>
 
 if version >= 800
+    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+
     Plug 'ludovicchabant/vim-gutentags'
     "Plug 'skywind3000/gutentags_plus'
     "let g:gutentags_trace = 1
