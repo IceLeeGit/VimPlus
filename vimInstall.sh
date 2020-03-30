@@ -8,8 +8,8 @@ sudo yum install vim git tmux ctags -y
 
 # Config bundle
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-\cp -arf ./autoload/plug.vim ~/.vim/autoload/
-\cp -arf ./autoload/pathogen.vim ~/.vim/autoload/
+\mkdir -p ~/.vim
+\cp -arf ./autoload ~/.vim/
 
 # Config tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux

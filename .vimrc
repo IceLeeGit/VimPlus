@@ -21,8 +21,8 @@ set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后�
 
 set magic                " 使用正则表达式设置
 if has("mouse") | set mouse=nc | endif    "鼠标设置
-"autocmd InsertLeave * se nocul  " 用浅色高亮当前行  
-autocmd InsertEnter * se cul    " 用浅色高亮当前行 
+"autocmd InsertLeave * se nocul  " 用浅色高亮当前行
+autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
@@ -42,8 +42,8 @@ set backspace=2          " 使用回车键正常处理indent,eol,start等
 set sidescroll=10        " 设置向右滚动字符数
 set nofoldenable         " 禁用折叠代码
 set scrolloff=7          " 代码最后保留7行，否则滚动
-"set colorcolumn=181     " au FileType c,cpp,python,vim set textwidth=181 
-set formatoptions+=mM    " 在断行、合并(join)行时，针对多字节字符（比如中文）的优化处理 
+"set colorcolumn=181     " au FileType c,cpp,python,vim set textwidth=181
+set formatoptions+=mM    " 在断行、合并(join)行时，针对多字节字符（比如中文）的优化处理
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码补全
@@ -76,7 +76,7 @@ set langmenu=zh_CN.UTF-8
 set helplang=cn
 set termencoding=utf-8
 set encoding=utf8
-set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030     " 检测文件编码时，优先考虑 UTF-8 
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030     " 检测文件编码时，优先考虑 UTF-8
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 文件设置       vim打开文件时的自动匹配
@@ -116,17 +116,17 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 " ctags and cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=./tags;
-"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR> 
-"map <C-F12> :!ctags -R .<CR> 
+"map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <C-F12> :!ctags -R .<CR>
 
-"cscope 
+"cscope
 if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=1
-    "set cst 
-    set nocst 
+    "set cst
+    set nocst
     set nocsverb
-    " 显示路径 0: 表示整个路径都会被显示 1 文件名 
+    " 显示路径 0: 表示整个路径都会被显示 1 文件名
     set cspc=0
     " add any database in current directory
     if filereadable("cscope.out")
@@ -143,18 +143,18 @@ if has("cscope")
     endif
     set csverb
 endif
-nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-c>e :cs find e <C-R>=expand("<cword>")<CR><CR>  
-nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>  
+nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-c>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
-" 自定义函数                                                                        
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""             
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 自定义函数
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>c :call FindHeader()<CR>
 function! FindHeader()
     let targetfile = ""
@@ -182,7 +182,7 @@ function! FindHeader()
         let input_list = ["C header file ".targetname.".*:",first_str.'#'.second_str.'filename']
         let index = 1
         while index <= files_len
-           let input_list += [first_str.index.second_str.file_list[index-1]] 
+           let input_list += [first_str.index.second_str.file_list[index-1]]
            let index = index + 1
         endwhile
         let g:num_=inputlist(input_list)
@@ -209,7 +209,7 @@ endfunction
 call plug#begin('~/.vim/plugged')
 call pathogen#infect('~/.vim/plugged/{}')
 
-Plug 'vim-airline/vim-airline'                                                                                                                                                        
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'gmarik/vundle'
 "Plug 'Lokaltog/vim-powerline'
@@ -258,10 +258,10 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 Plug 'vim-scripts/winmanager'
-
 Plug 'VundleVim/Vundle.vim'
-
 Plug 'mbriggs/mark.vim'
+
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 
 "文本对齐
 Plug 'godlygeek/tabular'
@@ -423,9 +423,9 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-" tabular                                                                           
-nnoremap <leader>l :Tab /\|<cr>                                                     
-nnoremap <leader>= :Tab /=<cr> 
+" tabular
+nnoremap <leader>l :Tab /\|<cr>
+nnoremap <leader>= :Tab /=<cr>
 
 if version >= 800
     Plug 'ludovicchabant/vim-gutentags'
