@@ -427,7 +427,7 @@ nnoremap <leader>l :Tab /\|<cr>
 nnoremap <leader>= :Tab /=<cr>
 
 if version >= 800
-    Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+    "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
 
     Plug 'ludovicchabant/vim-gutentags'
     "Plug 'skywind3000/gutentags_plus'
