@@ -42,7 +42,7 @@ set backspace=2          " 使用回车键正常处理indent,eol,start等
 set sidescroll=10        " 设置向右滚动字符数
 set nofoldenable         " 禁用折叠代码
 set scrolloff=7          " 代码最后保留7行，否则滚动
-"set colorcolumn=181     " au FileType c,cpp,python,vim set textwidth=181
+set colorcolumn=81     " au FileType c,cpp,python,vim set textwidth=181
 set formatoptions+=mM    " 在断行、合并(join)行时，针对多字节字符（比如中文）的优化处理
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -258,8 +258,9 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 Plug 'vim-scripts/winmanager'
-Plug 'VundleVim/Vundle.vim'
+"Plug 'VundleVim/Vundle.vim'
 Plug 'mbriggs/mark.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 
 "文本对齐
@@ -425,6 +426,45 @@ let g:airline_right_alt_sep = ''
 " tabular
 nnoremap <leader>l :Tab /\|<cr>
 nnoremap <leader>= :Tab /=<cr>
+
+" YCM
+" 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
+" let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_confirm_extra_conf = 0 
+let g:ycm_error_symbol = '✗'
+let g:ycm_warning_symbol = '✹'
+let g:ycm_seed_identifiers_with_syntax = 1 
+let g:ycm_complete_in_comments = 1 
+let g:ycm_complete_in_strings = 1 
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_semantic_triggers =  {
+            \   'c' : ['->', '.','re![_a-zA-z0-9]'],
+            \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+            \             're!\[.*\]\s'],
+            \   'ocaml' : ['.', '#'],
+            \   'cpp,objcpp' : ['->', '.', '::','re![_a-zA-Z0-9]'],
+            \   'perl' : ['->'],
+            \   'php' : ['->', '::'],
+            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
+            \   'ruby' : ['.', '::'],
+            \   'lua' : ['.', ':'],
+            \   'erlang' : [':'],
+            \ }
+nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
+" 已经使用cpp-mode插件提供的转到函数实现的功能
+" nnoremap <leader>i :YcmCompleter GoToDefinition<cr> 
+nnoremap <leader>o :YcmCompleter GoToInclude<cr>
+nnoremap <leader>ff :YcmCompleter FixIt<cr>
+nmap <F5> :YcmDiags<cr>
+
+"" buffer
+nnoremap <leader>bda :bufdo bd<cr>
+nnoremap <leader>bn :bnext<cr>
+nnoremap <leader>bp :bprevious<cr>
+
+"" airline 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
 
 if version >= 800
     "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
