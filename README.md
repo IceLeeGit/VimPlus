@@ -21,6 +21,8 @@ cd ./VimPlus
 |     ,+m      |               高亮字符               |
 |   ctrl + o   |            返回上一次访问            |
 |   ctrl + ]   |               函数跳转               |
+|  Ctrl - W + ]|   用新窗口打开并查看光标下符号的定义   |
+|  Ctrl - W + }|   使用 preview 窗口预览光标下符号的定义   |
 | crtl + c + s |                查找C                 |
 | crtl + c + g |             查找函数定义             |
 | crtl + c + c |               查找调用               |
