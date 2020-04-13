@@ -25,4 +25,4 @@ for i in $tmux_session;do
 done
 
 #tmux a -t Write
-tmux a
+tmux -2 a
