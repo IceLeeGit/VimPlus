@@ -201,7 +201,7 @@ endfunction
 
 nnoremap <silent> <F12> :call ChangeColorScheme()<cr>
 function! ChangeColorScheme()
-	if !g:colors_name:
+	if !g:colors_name
     	let g:colors = ["devbox-dark-256", "wombat256mod", "bubblegum-256-dark",
 \   	 "calmar256-dark", "tigrana-256-dark", "desert256v2"]
 
