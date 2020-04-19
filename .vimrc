@@ -375,6 +375,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 "代码补全
 Plug 'SirVer/ultisnips'
+" 代码片段补全
 Plug 'honza/vim-snippets'
 "END
 
@@ -445,6 +446,7 @@ nnoremap <leader>= :Tab /=<cr>
 " YCM
 " 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_auto_trigger = 0  " 打开/关闭自动触发补全 ctrl space 手动触发补全
 let g:ycm_min_num_of_chars_for_completion = 5
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = '✗'
@@ -472,6 +474,35 @@ nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
 nnoremap <leader>o :YcmCompleter GoToInclude<cr>
 nnoremap <leader>ff :YcmCompleter FixIt<cr>
 nmap <F5> :YcmDiags<cr>
+
+highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
+highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
+ 
+let g:ycm_key_invoke_completion = '<c-y>'
+set completeopt=menu,menuone
+" 使用 Ctrl+y 主动触发语义补全
+noremap <c-y> <NOP>
+" 修改补全列表配色
+let g:ycm_semantic_triggers =  {
+            \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+            \ 'cs,lua,javascript': ['re!\w{2}'],
+            \ }
+ 
+let g:ycm_filetype_whitelist = {
+            \ "c":1,
+            \ "cpp":1,
+            \ "go":1,
+            \ "python":1,
+            \ "sh":1,
+            \ "zsh":1,
+            \ }
+ 
+let g:ycm_filetype_blacklist = {
+        \ 'markdown' : 1,
+        \ 'text' : 1,
+        \ 'pandoc' : 1,
+        \ 'infolog' : 1,
+        \}
 
 "" buffer
 nnoremap <leader>bda :bufdo bd<cr>
@@ -540,7 +571,7 @@ if version >= 800
     "noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
     "noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
     "END.....gtags
-    Plug 'Shougo/deoplete.nvim'
+    "Plug 'Shougo/deoplete.nvim'
     " 自启动
     "let g:deoplete#enable_at_startup = 1
     "" smart case不解释

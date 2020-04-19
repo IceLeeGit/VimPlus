@@ -4,7 +4,7 @@ set -x
 
 # Install softwares
 
-sudo yum install vim git tmux ctags -y
+sudo yum install vim git tmux ctags cscope -y
 
 # Config bundle
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
