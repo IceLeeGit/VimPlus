@@ -473,7 +473,7 @@ nnoremap <leader>u :YcmCompleter GoToDeclaration<cr>
 " nnoremap <leader>i :YcmCompleter GoToDefinition<cr>
 nnoremap <leader>o :YcmCompleter GoToInclude<cr>
 nnoremap <leader>ff :YcmCompleter FixIt<cr>
-nmap <F5> :YcmDiags<cr>
+"nmap <F5> :YcmDiags<cr>
 
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
