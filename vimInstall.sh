@@ -13,7 +13,9 @@ sudo yum install vim git tmux ctags cscope -y
 
 # Config tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-ln -s  ~/.tmux/.tmux.conf ~/.tmux.conf 
+ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf 
+ln -s -f ~/.tmux/.tmux..conf.local ~/.tmux.conf.local
+
 sed  -i "0,/^alias/s/^alias/alias tmux='tmux -2'\nalias/1" ~/.bashrc
 source ~/.bashrc
 
