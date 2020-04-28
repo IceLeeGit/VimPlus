@@ -211,6 +211,7 @@ function! ChangeColorScheme()
     	let cls_index = (index_c+1)%len_colors
     	echo  g:colors[cls_index]
     	silent! execute "colorscheme ".g:colors[cls_index]
+        let g:colors_name = g:colors[cls_index]
 	endif
 endfunction
 
