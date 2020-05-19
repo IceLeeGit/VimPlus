@@ -117,7 +117,7 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<Leader><F11>    "设置粘贴模式
 imap <C-v> <Leader><F11><S-Insert><Leader><F11>
-nnoremap <silent> <C-c> :set number! <Bar> :IndentLinesToggle <CR>
+nnoremap <silent> <Leader>v :set number! <Bar> :IndentLinesToggle <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
