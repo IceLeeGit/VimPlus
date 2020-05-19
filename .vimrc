@@ -113,6 +113,13 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 粘贴复制
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set pastetoggle=<Leader><F11>    "设置粘贴模式
+imap <C-v> <Leader><F11><S-Insert><Leader><F11>
+nnoremap <silent> <C-c> :set number! <Bar> :IndentLinesToggle <CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=./tags;
