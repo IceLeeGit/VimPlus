@@ -116,7 +116,6 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 " 粘贴复制
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<Leader><F11>    "设置粘贴模式
-imap <C-v> <Leader><F11><S-Insert><Leader><F11>
 nnoremap <silent> <Leader>v :set number! <Bar> :IndentLinesToggle <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
