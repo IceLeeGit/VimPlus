@@ -1,7 +1,7 @@
 
 ### 简介VimPlus
-> 一键配置vim配置，解决vim配置难题，自动完成vim插件安装，打造完美程序猿工作环境（vim）
-> 程序猿大神装逼专用神器，vimplus你值得拥有
+> 一键配置vim配置，解决vim配置难题，自动完成vim插件安装，打造完美程序猿工作环境（vim）。
+> 撸代码、写代码以及炫技三管齐下，大神专用装逼神器，vimplus你值得拥有
 ### 安装VimPlus
 ```
 git clone https://github.com/IceLeeGit/VimPlus.git
