@@ -1,5 +1,4 @@
-
-set -x
+#!/usr/bin/sh
 
 # Install softwares
 
@@ -12,7 +11,7 @@ sudo yum install vim git tmux ctags cscope -y
 
 # Config tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf 
+ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.tmux/.tmux..conf.local ~/.tmux.conf.local
 
 sed  -i "0,/^alias/s/^alias/alias tmux='tmux -2'\nalias/1" ~/.bashrc
@@ -21,9 +20,17 @@ source ~/.bashrc
 # Install vimplus
 \cp -abrf ./cscope.sh ./start_tmux.sh ./.vimrc ~/                      # tmux cscope .vimrc
 
-if [ $1 == "gitee" ];then
-    vim --cmd "let g:gitee = 1" -c "PlugInstall" -c "q" -c "q"
-
-else
-    vim -c "PlugInstall" -c "q" -c "q"
+cmd_args=""
+if [ "$1" == "gitee" ];then
+    cmd_args='let g:gitee = 1'
 fi
+
+if [ "$2" == "ycm" ];then
+    if [ -z "${cmd_args}" ];then
+        cmd_args="let g:ycm = 1"
+    else
+        cmd_args="${cmd_args} | let g:ycm = 1"
+    fi
+fi
+
+vim --cmd "${cmd_args}" -c "PlugInstall" -c "q" -c "q"
