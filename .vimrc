@@ -37,7 +37,7 @@ set tabstop=4            " 设置编辑时制表符占用空格数
 set shiftwidth=4         " 设置格式化时制表符占用空格数
 set softtabstop=4        " 设置4个空格为制表符
 set smarttab             " 在行和段开始处使用制表符
-set nowrap               " 禁止折行
+"set nowrap               " 禁止折行
 set backspace=2          " 使用回车键正常处理indent,eol,start等
 set sidescroll=10        " 设置向右滚动字符数
 set nofoldenable         " 禁用折叠代码
@@ -233,10 +233,26 @@ call pathogen#infect('~/.vim/plugged/{}')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'gmarik/vundle'
-"Plug 'Lokaltog/vim-powerline'
-"set laststatus=2
-"let g:Powline_symbols='fancy'
+
+if !exists("g:gitee")                                                               
+    let g:gitee = 0                                                                                                                                            
+endif
+
+if g:gitee == 0 
+    Plug 'flazz/vim-colorschemes'
+    Plug 'dense-analysis/ale'
+    "代码补全
+    Plug 'SirVer/ultisnips'
+
+else
+    Plug 'https://gitee.com/Icey9/ale.git'
+    Plug 'https://gitee.com/Icey9/vim-colorschemes.git'
+
+    "代码补全
+    Plug 'https://gitee.com/Icey9/ultisnips.git'
+
+endif
+
 
 Plug 'vim-scripts/taglist.vim'
 "let Tlist_Use_Left_Window = 1
@@ -303,51 +319,9 @@ let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 3
 "END
 
-Plug 'flazz/vim-colorschemes'
-silent! colorscheme devbox-dark-256
 
 "注释代码
 Plug 'tomtom/tcomment_vim'
-
-Plug 'dense-analysis/ale'
-"ale
-"始终开启标志列
-let g:ale_sign_column_always = 0
-let g:ale_set_highlights = 0
-"自定义error和warning图标
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚡'
-"在vim自带的状态栏中整合ale
-let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
-"显示Linter名称,出错或警告等相关信息
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
-nmap sp <Plug>(ale_previous_wrap)
-nmap sn <Plug>(ale_next_wrap)
-"<Leader>s触发/关闭语法检查
-nmap <Leader>s :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
-nmap <Leader>d :ALEDetail<CR>
-
-"修改Locaton List窗口高度
-let g:ale_list_window_size = 5
-"文件内容发生变化时不进行检查
-let g:ale_lint_on_text_changed = 'never'
-"打开文件时不进行检查
-let g:ale_lint_on_enter = 0
-"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
-let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'python': ['pylint'],
-\}
-
-let g:airline_section_error = '%{exists("ALEGetStatusLine") ? ALEGetStatusLine() : ""}'
-"设置状态栏显示的内容
-"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
-"END ale
 
 "替换双引号
 Plug 'tpope/vim-surround'
@@ -380,8 +354,6 @@ Plug 'Raimondi/delimitMate'
 " For Python docstring.
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
-"代码补全
-Plug 'SirVer/ultisnips'
 " 代码片段补全
 Plug 'honza/vim-snippets'
 "END
@@ -431,6 +403,51 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+
+""" ale
+"始终开启标志列
+let g:ale_sign_column_always = 0
+let g:ale_set_highlights = 0
+"自定义error和warning图标
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+"在vim自带的状态栏中整合ale
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+"显示Linter名称,出错或警告等相关信息
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"普通模式下，sp前往上一个错误或警告，sn前往下一个错误或警告
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>s触发/关闭语法检查
+nmap <Leader>s :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nmap <Leader>d :ALEDetail<CR>
+
+"修改Locaton List窗口高度
+let g:ale_list_window_size = 5
+"文件内容发生变化时不进行检查
+let g:ale_lint_on_text_changed = 'never'
+"打开文件时不进行检查
+let g:ale_lint_on_enter = 0
+"使用clang对c和c++进行语法检查，对python使用pylint进行语法检查
+let g:ale_linters = {
+\   'c++': ['clang'],
+\   'c': ['clang'],
+\   'python': ['pylint'],
+\}
+
+let g:airline_section_error = '%{exists("ALEGetStatusLine") ? ALEGetStatusLine() : ""}'
+"设置状态栏显示的内容
+"set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
+"ale END
+
+""" colorscheme
+silent! colorscheme devbox-dark-256
+"colorscheme END
+
 
 " airline
 let g:airline_theme="onedark"
@@ -521,7 +538,11 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
 if version >= 800
-    "Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+    if g:gitee ==? "False" 
+        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+    else
+        Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
+    endif
 
     Plug 'ludovicchabant/vim-gutentags'
     "Plug 'skywind3000/gutentags_plus'

@@ -7,6 +7,8 @@
 git clone https://github.com/IceLeeGit/VimPlus.git
 cd ./VimPlus
 ./vimInstall.sh
+支持gitee安装
+./vimInstall.sh gitee
 ```
 ### 效果图
 ![rendering](./screenshot/rendering.jpg)

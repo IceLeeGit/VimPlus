@@ -1,5 +1,4 @@
 
-
 set -x
 
 # Install softwares
@@ -21,4 +20,10 @@ source ~/.bashrc
 
 # Install vimplus
 \cp -abrf ./cscope.sh ./start_tmux.sh ./.vimrc ~/                      # tmux cscope .vimrc
-vim -c "PlugInstall" -c "q" -c "q"
+
+if [ $1 == "gitee" ];then
+    vim --cmd "let g:gitee = 1" -c "PlugInstall" -c "q" -c "q"
+
+else
+    vim -c "PlugInstall" -c "q" -c "q"
+fi
