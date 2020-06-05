@@ -538,11 +538,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
 if version >= 800
-    if g:gitee ==? "False" 
-        Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-    else
-        Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
-    endif
+    if exists("g:ycm") && g:ycm == 1
+        if g:gitee == 0 
+            Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+        else
+            Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
+        endif
+    endi
 
     Plug 'ludovicchabant/vim-gutentags'
     "Plug 'skywind3000/gutentags_plus'
