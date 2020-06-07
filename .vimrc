@@ -221,6 +221,46 @@ function! ChangeColorScheme()
 	endif
 endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""          
+" 自动插入头文件                                                                 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""          
+autocmd BufNewFile *.sh,*.py,*.h,*.hpp,*.c,*.cc,*.cpp exec ":call SetFileTitle()"
+"自动定位到文件末尾                                                              
+autocmd BufNewFile * normal G                                                    
+                                                                                 
+func! SetFileTitle()                                                                                                                                                               
+    let l:ext = expand("%:e")                                                    
+    if &filetype == 'sh'                                                         
+        call setline(1,"#!/usr/bin/sh")                                          
+        call setline(2,"")                                                       
+    elseif &filetype == 'python'                                                 
+        call setline(1, "\#!/usr/bin/env python")                                
+        call setline(2, "\# coding=utf-8")                                       
+        call setline(3,"")                                                       
+    elseif l:ext == 'h' || l:ext == 'hpp'                                        
+        let l:hfilename = toupper(expand("%:t:r"))."_H"                          
+        call setline( 1, "#ifndef ".hfilename)                                   
+        call setline( 2, "#define ".hfilename)                                   
+        call setline( 3, "")                                                     
+        call setline( 4, "   ...   ")                                            
+        call setline( 5, "#endif // ".hfilename)                                 
+    elseif &filetype == 'c'                                                      
+        call setline( 1, "#include \<stdio.h\>")                                 
+        call setline( 2, "")                                                     
+        call setline( 3, "int main(int argc, char *argv[]) {")                   
+        call setline( 4, "    return 0;")                                        
+        call setline( 5, "}")                                                    
+    elseif &filetype == 'cpp' || &filetype == 'cc'                               
+        call setline( 1, "#include \<iostream\>")                                
+        call setline( 2, "")                                                     
+        call setline( 3, "using namespace std;")                                 
+        call setline( 4, "")                                                     
+        call setline( 5, "int main(int argc, char *argv[]) {")                   
+        call setline( 6, "    return 0;")                                        
+        call setline( 7, "}")                                                    
+    endif                                                                        
+endfunction 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
