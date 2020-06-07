@@ -537,6 +537,13 @@ nnoremap <leader>bp :bprevious<cr>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
+"" vim-cpp-enhanced-highlight                                                       
+let g:cpp_class_scope_highlight = 1                                                 
+let g:cpp_member_variable_highlight = 1                                             
+let g:cpp_class_decl_highlight = 1                                                                                                                                                 
+let g:cpp_experimental_simple_template_highlight = 1     
+let g:cpp_posix_standard = 1
+
 if version >= 800
     if exists("g:ycm") && g:ycm == 1
         if g:gitee == 0 
