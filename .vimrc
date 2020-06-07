@@ -230,10 +230,10 @@ autocmd BufNewFile * normal G
                                                                                  
 func! SetFileTitle()                                                                                                                                                               
     let l:ext = expand("%:e")                                                    
-    if &filetype == 'sh'                                                         
+    if l:ext == 'sh'                                                         
         call setline(1,"#!/usr/bin/sh")                                          
         call setline(2,"")                                                       
-    elseif &filetype == 'python'                                                 
+    elseif l:ext == 'py'                                                 
         call setline(1, "\#!/usr/bin/env python")                                
         call setline(2, "\# coding=utf-8")                                       
         call setline(3,"")                                                       
@@ -244,13 +244,13 @@ func! SetFileTitle()
         call setline( 3, "")                                                     
         call setline( 4, "   ...   ")                                            
         call setline( 5, "#endif // ".hfilename)                                 
-    elseif &filetype == 'c'                                                      
+    elseif l:ext == 'c'                                                      
         call setline( 1, "#include \<stdio.h\>")                                 
         call setline( 2, "")                                                     
         call setline( 3, "int main(int argc, char *argv[]) {")                   
         call setline( 4, "    return 0;")                                        
         call setline( 5, "}")                                                    
-    elseif &filetype == 'cpp' || &filetype == 'cc'                               
+    elseif l:ext == 'cpp' || l:ext == 'cc'                               
         call setline( 1, "#include \<iostream\>")                                
         call setline( 2, "")                                                     
         call setline( 3, "using namespace std;")                                 
