@@ -1,0 +1,4 @@
+[submodule "jedi/third_party/typeshed"]
+	path = jedi/third_party/typeshed
+    url = https://gitee.com/Icey9/typeshed.git
+#url = https://github.com/davidhalter/typeshed.git

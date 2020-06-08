@@ -26,6 +26,7 @@ if [ "$1" == "gitee" ];then
 fi
 
 if [ "$2" == "ycm" ];then
+    ./install_gitee.sh
     if [ -z "${cmd_args}" ];then
         cmd_args="let g:ycm = 1"
     else

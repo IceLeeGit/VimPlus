@@ -116,7 +116,7 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 " 粘贴复制
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<Leader><F11>    "设置粘贴模式
-nnoremap <silent> <Leader>v :set number! <Bar> :IndentLinesToggle <CR>
+nnoremap <silent> <Leader>c :set number! <Bar> :IndentLinesToggle <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
@@ -161,7 +161,7 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自定义函数
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>c :call FindHeader()<CR>
+nnoremap <leader>h :call FindHeader()<CR>
 function! FindHeader()
     let targetfile = ""
     let targetpath = expand("%:h")

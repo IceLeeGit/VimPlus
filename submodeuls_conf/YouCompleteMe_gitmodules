@@ -1,0 +1,27 @@
+[submodule "third_party/requests-futures"]
+	path = third_party/requests-futures
+	url = https://github.com/ross/requests-futures
+[submodule "third_party/ycmd"]
+	path = third_party/ycmd
+    url = https://gitee.com/Icey9/ycmd.git
+#url = https://github.com/ycm-core/ycmd
+[submodule "third_party/requests_deps/idna"]
+	path = third_party/requests_deps/idna
+    url = https://gitee.com/mirrors/idna.git
+#url = https://github.com/kjd/idna
+[submodule "third_party/requests_deps/certifi"]
+	path = third_party/requests_deps/certifi
+    url = https://gitee.com/Icey9/python-certifi.git
+#url = https://github.com/certifi/python-certifi
+[submodule "third_party/requests_deps/chardet"]
+	path = third_party/requests_deps/chardet
+    url = https://gitee.com/mirrors/chardet.git
+#url = https://github.com/chardet/chardet
+[submodule "third_party/requests_deps/urllib3"]
+	path = third_party/requests_deps/urllib3
+    url = https://gitee.com/mirrors/urllib3.git
+#url = https://github.com/urllib3/urllib3
+[submodule "third_party/requests_deps/requests"]
+	path = third_party/requests_deps/requests
+    url = https://gitee.com/mirrors/Requests.git
+#url = https://github.com/requests/requests
