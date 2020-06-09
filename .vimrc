@@ -726,6 +726,15 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " 使用plus插件解决问题
 let g:gutentags_auto_add_gtags_cscope = 0
 
+
+""""""""""""""""""""
+"" vim-snippets settings
+""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
 """"""""""""""""""""""""""""""
 "" deoplete 补全
 """"""""""""""""""""""""""""""
