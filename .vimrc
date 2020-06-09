@@ -636,9 +636,9 @@ let g:cpp_posix_standard = 1
 """"""""""""""""""""""""""""""
 "vim-nerdtree-syntax-highlight settings
 """"""""""""""""""""""""""""""
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = 1
-let g:DevIconsDefaultFolderOpenSymbol = 1
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ' '
+let g:DevIconsDefaultFolderOpenSymbol = ' '
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = ' '
 "Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
