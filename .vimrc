@@ -221,45 +221,45 @@ function! ChangeColorScheme()
 	endif
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""          
-" 自动插入头文件                                                                 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""          
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 自动插入头文件
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufNewFile *.sh,*.py,*.h,*.hpp,*.c,*.cc,*.cpp exec ":call SetFileTitle()"
-"自动定位到文件末尾                                                              
-autocmd BufNewFile * normal G                                                    
-                                                                                 
-func! SetFileTitle()                                                                                                                                                               
-    let l:ext = expand("%:e")                                                    
-    if l:ext == 'sh'                                                         
-        call setline(1,"#!/usr/bin/sh")                                          
-        call setline(2,"")                                                       
-    elseif l:ext == 'py'                                                 
-        call setline(1, "\#!/usr/bin/env python")                                
-        call setline(2, "\# coding=utf-8")                                       
-        call setline(3,"")                                                       
-    elseif l:ext == 'h' || l:ext == 'hpp'                                        
-        let l:hfilename = toupper(expand("%:t:r"))."_H"                          
-        call setline( 1, "#ifndef ".hfilename)                                   
-        call setline( 2, "#define ".hfilename)                                   
-        call setline( 3, "")                                                     
-        call setline( 4, "   ...   ")                                            
-        call setline( 5, "#endif // ".hfilename)                                 
-    elseif l:ext == 'c'                                                      
-        call setline( 1, "#include \<stdio.h\>")                                 
-        call setline( 2, "")                                                     
-        call setline( 3, "int main(int argc, char *argv[]) {")                   
-        call setline( 4, "    return 0;")                                        
-        call setline( 5, "}")                                                    
-    elseif l:ext == 'cpp' || l:ext == 'cc'                               
-        call setline( 1, "#include \<iostream\>")                                
-        call setline( 2, "")                                                     
-        call setline( 3, "using namespace std;")                                 
-        call setline( 4, "")                                                     
-        call setline( 5, "int main(int argc, char *argv[]) {")                   
-        call setline( 6, "    return 0;")                                        
-        call setline( 7, "}")                                                    
-    endif                                                                        
-endfunction 
+"自动定位到文件末尾
+autocmd BufNewFile * normal G
+
+func! SetFileTitle()
+    let l:ext = expand("%:e")
+    if l:ext == 'sh'
+        call setline(1,"#!/usr/bin/sh")
+        call setline(2,"")
+    elseif l:ext == 'py'
+        call setline(1, "\#!/usr/bin/env python")
+        call setline(2, "\# coding=utf-8")
+        call setline(3,"")
+    elseif l:ext == 'h' || l:ext == 'hpp'
+        let l:hfilename = toupper(expand("%:t:r"))."_H"
+        call setline( 1, "#ifndef ".hfilename)
+        call setline( 2, "#define ".hfilename)
+        call setline( 3, "")
+        call setline( 4, "   ...   ")
+        call setline( 5, "#endif // ".hfilename)
+    elseif l:ext == 'c'
+        call setline( 1, "#include \<stdio.h\>")
+        call setline( 2, "")
+        call setline( 3, "int main(int argc, char *argv[]) {")
+        call setline( 4, "    return 0;")
+        call setline( 5, "}")
+    elseif l:ext == 'cpp' || l:ext == 'cc'
+        call setline( 1, "#include \<iostream\>")
+        call setline( 2, "")
+        call setline( 3, "using namespace std;")
+        call setline( 4, "")
+        call setline( 5, "int main(int argc, char *argv[]) {")
+        call setline( 6, "    return 0;")
+        call setline( 7, "}")
+    endif
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
@@ -274,11 +274,11 @@ call pathogen#infect('~/.vim/plugged/{}')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-if !exists("g:gitee")                                                               
-    let g:gitee = 0                                                                                                                                            
+if !exists("g:gitee")
+    let g:gitee = 0
 endif
 
-if g:gitee == 0 
+if g:gitee == 0
     Plug 'flazz/vim-colorschemes'
     Plug 'dense-analysis/ale'
     "代码补全
@@ -293,22 +293,65 @@ else
 
 endif
 
-
 Plug 'vim-scripts/taglist.vim'
-"let Tlist_Use_Left_Window = 1
-let Tlist_Use_Right_Window=1
-let Tlist_File_Fold_Auto_Close = 1
-"let Tlist_Sort_Type ='name'
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Ctags_Cmd ='/usr/bin/ctags' "将taglist与ctags关联
-let Tlist_WinWidth = 42
-let Tlist_GainFocus_On_ToggleOpen = 1
-nmap <silent>tl :TlistToggle<cr>
-"let Tlist_Show_Menu=1
-"END Taglist
-
-
 Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/winmanager'
+Plug 'mbriggs/mark.vim'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+"文本对齐
+Plug 'godlygeek/tabular'
+Plug 'jacquesbh/vim-showmarks'
+Plug 'Yggdroot/indentLine'
+
+"python补全
+Plug 'rkulla/pydiction'
+
+"注释代码
+Plug 'tomtom/tcomment_vim'
+
+"替换双引号
+Plug 'tpope/vim-surround'
+
+"ctrl+p
+Plug 'ervandew/supertab'
+
+"Syntax
+Plug 'justinmk/vim-syntax-extra'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'hdima/python-syntax'
+
+Plug 'Raimondi/delimitMate'
+" 代码片段补全
+Plug 'honza/vim-snippets'
+"Taglist 增强
+Plug 'majutsushi/tagbar'
+"if/end/endif/endfunction补全
+Plug 'tpope/vim-endwise'
+Plug 'Shougo/echodoc.vim'
+"强化f和F键
+Plug 'rhysd/clever-f.vim'
+Plug 'terryma/vim-smooth-scroll'
+
+if version >= 800
+    if exists("g:ycm") && g:ycm == 1
+        if g:gitee == 0
+            Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+        else
+            Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
+        endif
+    endi
+    Plug 'ludovicchabant/vim-gutentags'
+    "Plug 'Shougo/deoplete.nvim'
+endif
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
+"" nerdtree
+""""""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
 ""当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -332,39 +375,43 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 " }}}
-" END Nerdtree
 
 
-Plug 'vim-scripts/winmanager'
-"Plug 'VundleVim/Vundle.vim'
-Plug 'mbriggs/mark.vim'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-
-"文本对齐
-Plug 'godlygeek/tabular'
-Plug 'jacquesbh/vim-showmarks'
+""""""""""""""""""""""""""""""
+"" vim-showmarks
+""""""""""""""""""""""""""""""
 let showmarks_enable = 1
 let g:showmarks_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "let showmarks_ignore_type = "hqm"
 "let showmarks_hlline_lower = 1
 "let showmarks_hlline_upper = 1
-" END showmarks
 
-Plug 'Yggdroot/indentLine'
 
-"python补全
-Plug 'rkulla/pydiction'
+""""""""""""""""""""""""""""""
+"" pydiction python补全
+""""""""""""""""""""""""""""""
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 3
-"END
 
 
-"注释代码
-Plug 'tomtom/tcomment_vim'
+""""""""""""""""""""""""""""""
+"" taglist
+""""""""""""""""""""""""""""""
+"let Tlist_Use_Left_Window = 1
+let Tlist_Use_Right_Window=1
+let Tlist_File_Fold_Auto_Close = 1
+"let Tlist_Sort_Type ='name'
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_Ctags_Cmd ='/usr/bin/ctags' "将taglist与ctags关联
+let Tlist_WinWidth = 42
+let Tlist_GainFocus_On_ToggleOpen = 1
+nmap <silent>tl :TlistToggle<cr>
+"let Tlist_Show_Menu=1
 
-"替换双引号
-Plug 'tpope/vim-surround'
+
+""""""""""""""""""""""""""""""
+"" vim-surround  替换双引号
+""""""""""""""""""""""""""""""
 vmap " S"
 vmap ' S'
 vmap ` S`
@@ -375,40 +422,31 @@ vmap } S}
 vmap ] S]
 vmap ) S)
 vmap > S>
-" END Surround
 
-Plug 'ervandew/supertab'
+
+""""""""""""""""""""""""""""""
+"" supertab ctrl+p
+""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType="context"
 let g:SuperTabRetainCompletionType=2
-"END  ctrl+p
 
-"Syntax
-Plug 'justinmk/vim-syntax-extra'
-Plug 'octol/vim-cpp-enhanced-highlight'
 
-Plug 'hdima/python-syntax'
+""""""""""""""""""""""""""""""
+"" python-syntax
+""""""""""""""""""""""""""""""
 let python_highlight_all = 1
-"END python syntax
 
-Plug 'Raimondi/delimitMate'
+
+""""""""""""""""""""""""""""""
+"" delimitMate
+""""""""""""""""""""""""""""""
 " For Python docstring.
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
-" 代码片段补全
-Plug 'honza/vim-snippets'
-"END
 
-
-"标记修改
-"Plug 'chrisbra/changesPlug'
-"let g:changes_autocmd=1
-"let g:changes_use_icons = 1
-" let g:changes_respect_SignColumn = 1
-"let g:changes_sign_text_utf8 = 1
-" END changes
-
-"Taglist 增强
-Plug 'majutsushi/tagbar'
+""""""""""""""""""""""""""""""
+"" tagbar  Taglist 增强
+""""""""""""""""""""""""""""""
 nmap <silent>tb :TagbarToggle<CR>
 " 启动时自动focus
 let g:tagbar_autofocus = 1
@@ -425,27 +463,28 @@ let g:tagbar_type_ruby = {
     \ ]
 \ }
 
-"if/end/endif/endfunction补全
-Plug 'tpope/vim-endwise'
 
+""""""""""""""""""""""""""""""
+"" echodoc
+""""""""""""""""""""""""""""""
 "补全函数时在命令栏显示函数签名
-Plug 'Shougo/echodoc.vim'
 set cmdheight=2
 let g:echodoc_enable_at_startup = 1
-"END echodoc
 
-"强化f和F键
-Plug 'rhysd/clever-f.vim'
 
-"
-Plug 'terryma/vim-smooth-scroll'
+""""""""""""""""""""""""""""""
+"" vim-smooth-scroll
+""""""""""""""""""""""""""""""
+" 平滑移动
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
 
+""""""""""""""""""""""""""""""
 """ ale
+""""""""""""""""""""""""""""""
 "始终开启标志列
 let g:ale_sign_column_always = 0
 let g:ale_set_highlights = 0
@@ -484,12 +523,14 @@ let g:airline_section_error = '%{exists("ALEGetStatusLine") ? ALEGetStatusLine()
 "set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}\ %{ALEGetStatusLine()}
 "ale END
 
+""""""""""""""""""""""""""""""
 """ colorscheme
+""""""""""""""""""""""""""""""
 silent! colorscheme devbox-dark-256
-"colorscheme END
 
-
+""""""""""""""""""""""""""""""
 " airline
+""""""""""""""""""""""""""""""
 let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
 "let g:airline#extensions#tabline#enabled = 1
@@ -507,7 +548,9 @@ let g:airline_right_alt_sep = ''
 nnoremap <leader>l :Tab /\|<cr>
 nnoremap <leader>= :Tab /=<cr>
 
+""""""""""""""""""""""""""""""
 " YCM
+""""""""""""""""""""""""""""""
 " 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 let g:ycm_auto_trigger = 0  " 打开/关闭自动触发补全 ctrl space 手动触发补全
@@ -541,7 +584,7 @@ nnoremap <leader>ff :YcmCompleter FixIt<cr>
 
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
- 
+
 let g:ycm_key_invoke_completion = '<c-y>'
 set completeopt=menu,menuone
 " 使用 Ctrl+y 主动触发语义补全
@@ -551,7 +594,7 @@ let g:ycm_semantic_triggers =  {
             \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
             \ 'cs,lua,javascript': ['re!\w{2}'],
             \ }
- 
+
 let g:ycm_filetype_whitelist = {
             \ "c":1,
             \ "cpp":1,
@@ -560,7 +603,7 @@ let g:ycm_filetype_whitelist = {
             \ "sh":1,
             \ "zsh":1,
             \ }
- 
+
 let g:ycm_filetype_blacklist = {
         \ 'markdown' : 1,
         \ 'text' : 1,
@@ -568,117 +611,152 @@ let g:ycm_filetype_blacklist = {
         \ 'infolog' : 1,
         \}
 
+""""""""""""""""""""""""""""""
 "" buffer
+""""""""""""""""""""""""""""""
 nnoremap <leader>bda :bufdo bd<cr>
 nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>bp :bprevious<cr>
 
+""""""""""""""""""""""""""""""
 "" airline
+""""""""""""""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'default'
 
-"" vim-cpp-enhanced-highlight                                                       
-let g:cpp_class_scope_highlight = 1                                                 
-let g:cpp_member_variable_highlight = 1                                             
-let g:cpp_class_decl_highlight = 1                                                                                                                                                 
-let g:cpp_experimental_simple_template_highlight = 1     
+""""""""""""""""""""""""""""""
+"" vim-cpp-enhanced-highlight
+""""""""""""""""""""""""""""""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_posix_standard = 1
 
-if version >= 800
-    if exists("g:ycm") && g:ycm == 1
-        if g:gitee == 0 
-            Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
-        else
-            Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
-        endif
-    endi
+""""""""""""""""""""""""""""""
+"vim-nerdtree-syntax-highlight settings
+""""""""""""""""""""""""""""""
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = 1
+let g:DevIconsDefaultFolderOpenSymbol = 1
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol = 'ƛ'
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
 
-    Plug 'ludovicchabant/vim-gutentags'
-    "Plug 'skywind3000/gutentags_plus'
-    "let g:gutentags_trace = 1
+"Highlight full name (not only icons). You need to add this if you don't have vim-devicons and want highlight.
+let g:NERDTreeHighlightFolders = 1
 
-    let g:gutentags_plus_switch = 0
+"highlights the folder name
+let g:NERDTreeHighlightFoldersFullName = 1
 
-    let $GTAGSLABEL = 'native-pygments'
-    let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+"you can add these colors to your .vimrc to help customizing
+let s:brown = "905532"
+let s:aqua =  "3AFFDB"
+let s:blue = "689FB6"
+let s:darkBlue = "44788E"
+let s:purple = "834F79"
+let s:lightPurple = "834F79"
+let s:red = "AE403F"
+let s:beige = "F5C06F"
+let s:yellow = "F09F17"
+let s:orange = "D4843E"
+let s:darkOrange = "F16529"
+let s:pink = "CB6F6F"
+let s:salmon = "EE6E73"
+let s:green = "8FAA54"
+let s:Turquoise = "40E0D0"
+let s:lightGreen = "31B53E"
+let s:white = "FFFFFF"
+let s:rspec_red = "FE405F"
+let s:git_orange = "F54D27"
+let s:gray = "808A87"
 
-    " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:NERDTreeExtensionHighlightColor = {} " this line is needed to avoid error
+let g:NERDTreeExtensionHighlightColor['o'] = s:gray " sets the color of o files to blue
+let g:NERDTreeExtensionHighlightColor['h'] = s:blue " sets the color of h files to blue
+let g:NERDTreeExtensionHighlightColor['c'] = s:green " sets the color of c files to blue
+let g:NERDTreeExtensionHighlightColor['cpp'] = s:green " sets the color of cpp files to blue
+let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ files to blue
 
-    " 所生成的数据文件的名称
-    let g:gutentags_ctags_tagfile = '.tags'
 
-    "" 同时开启 ctags 和 gtags 支持：
-    let g:gutentags_modules = []
-    if executable('ctags')
-        let g:gutentags_modules += ['ctags']
-    endif
-    if executable('gtags_cscope') && executable('gtags')
-        let g:gutentags_modules += ['gtags_cscope']
-    endif
+""""""""""""""""""""""""""""""
+"vim-gutentags 自动创建tags
+""""""""""""""""""""""""""""""
+let g:gutentags_plus_switch = 0
 
-    set tags+=tags
+let $GTAGSLABEL = 'native-pygments'
+let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
-    " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-    let s:vim_tags = expand('~/.cache/tags')
-    let g:gutentags_cache_dir = s:vim_tags
-    " 检测 ~/.cache/tags 不存在就新建 "
-    if !isdirectory(s:vim_tags)
-       silent! call mkdir(s:vim_tags, 'p')
-    endif
+" gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 
-    " 配置 ctags 的参数
-    let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-    let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-    let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
 
-    " 如果使用 universal ctags 需要增加下面一行
-    "let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
-    " 禁用 gutentags 自动加载 gtags 数据库的行为
-    " 避免多个项目数据库相互干扰
-    " 使用plus插件解决问题
-    let g:gutentags_auto_add_gtags_cscope = 0
-
-    ""预览 quickfix 窗口 ctrl-w z 关闭
-    "Plug 'skywind3000/vim-preview'
-    ""P 预览 大p关闭
-    "autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
-    "autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
-    "noremap <Leader>u :PreviewScroll -1<cr> " 往上滚动预览窗口
-    "noremap <leader>d :PreviewScroll +1<cr> "  往下滚动预览窗口
-    "END.....gtags
-    "Plug 'Shougo/deoplete.nvim'
-    " 自启动
-    "let g:deoplete#enable_at_startup = 1
-    "" smart case不解释
-    "let g:deoplete#enable_smart_case = 1
-    "
-    "" 用户输入至少两个字符时再开始提示补全
-    "call deoplete#custom#source('LanguageClient',
-    "            \ 'min_pattern_length',
-    "            \ 2)
-    "
-    "" 字符串中不补全
-    "call deoplete#custom#source('_',
-    "            \ 'disabled_syntaxes', ['String']
-    "            \ )
-    "
-    "" 补全结束或离开插入模式时，关闭预览窗口
-    "autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-    "
-    "" 为每个语言定义completion source
-    "" 是的vim script和zsh script都有，这就是deoplete
-    "call deoplete#custom#option('sources', {
-    "            \ 'cpp': ['LanguageClient'],
-    "            \ 'c': ['LanguageClient'],
-    "            \ 'vim': ['vim'],
-    "            \ 'zsh': ['zsh']
-    "            \})
-    "
-    "" 忽略一些没意思的completion source。
-    "let g:deoplete#ignore_sources = {}
-    "let g:deoplete#ignore_sources._ = ['buffer', 'around']
-    "END deoplete
+"" 同时开启 ctags 和 gtags 支持：
+let g:gutentags_modules = []
+if executable('ctags')
+    let g:gutentags_modules += ['ctags']
 endif
-call plug#end()
+if executable('gtags_cscope') && executable('gtags')
+    let g:gutentags_modules += ['gtags_cscope']
+endif
+
+set tags+=tags
+
+" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 检测 ~/.cache/tags 不存在就新建 "
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 如果使用 universal ctags 需要增加下面一行
+"let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+
+" 禁用 gutentags 自动加载 gtags 数据库的行为
+" 避免多个项目数据库相互干扰
+" 使用plus插件解决问题
+let g:gutentags_auto_add_gtags_cscope = 0
+
+""""""""""""""""""""""""""""""
+"" deoplete 补全
+""""""""""""""""""""""""""""""
+" 自启动
+"let g:deoplete#enable_at_startup = 1
+"" smart case不解释
+"let g:deoplete#enable_smart_case = 1
+"
+"" 用户输入至少两个字符时再开始提示补全
+"call deoplete#custom#source('LanguageClient',
+"            \ 'min_pattern_length',
+"            \ 2)
+"
+"" 字符串中不补全
+"call deoplete#custom#source('_',
+"            \ 'disabled_syntaxes', ['String']
+"            \ )
+"
+"" 补全结束或离开插入模式时，关闭预览窗口
+"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+"
+"" 为每个语言定义completion source
+"" 是的vim script和zsh script都有，这就是deoplete
+"call deoplete#custom#option('sources', {
+"            \ 'cpp': ['LanguageClient'],
+"            \ 'c': ['LanguageClient'],
+"            \ 'vim': ['vim'],
+"            \ 'zsh': ['zsh']
+"            \})
+"
+"" 忽略一些没意思的completion source。
+"let g:deoplete#ignore_sources = {}
+"let g:deoplete#ignore_sources._ = ['buffer', 'around']
+
