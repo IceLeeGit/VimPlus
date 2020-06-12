@@ -533,7 +533,6 @@ silent! colorscheme devbox-dark-256
 """"""""""""""""""""""""""""""
 let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
-"let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline#extensions#whitespace#symbol = '!'
 if !exists('g:airline_symbols')
@@ -543,13 +542,18 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'default'
 
-" tabular
+
+""""""""""""""""""""""""""""""
+"" tabular
+""""""""""""""""""""""""""""""
 nnoremap <leader>l :Tab /\|<cr>
 nnoremap <leader>= :Tab /=<cr>
 
 """"""""""""""""""""""""""""""
-" YCM
+"" YCM
 """"""""""""""""""""""""""""""
 " 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
@@ -618,11 +622,6 @@ nnoremap <leader>bda :bufdo bd<cr>
 nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>bp :bprevious<cr>
 
-""""""""""""""""""""""""""""""
-"" airline
-""""""""""""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
 
 """"""""""""""""""""""""""""""
 "" vim-cpp-enhanced-highlight
@@ -706,7 +705,7 @@ endif
 set tags+=tags
 
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
+let s:vim_tags = expand('~/.vim/tags')
 let g:gutentags_cache_dir = s:vim_tags
 " 检测 ~/.cache/tags 不存在就新建 "
 if !isdirectory(s:vim_tags)
