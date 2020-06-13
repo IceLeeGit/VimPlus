@@ -70,8 +70,8 @@ install_YouCompleteMe()
 	pushd ${ycp_path}
 	    # clone all submodules
         update_git "True"
-        yum install -y cmake gcc-c++ make python3-devel
-	    ./install.py
+        sudo yum install -y cmake gcc-c++ make python3-devel
+	    ./install.py --all
     popd
 }
 
