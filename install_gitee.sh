@@ -71,7 +71,7 @@ install_YouCompleteMe()
 	    # clone all submodules
         update_git "True"
         sudo yum install -y cmake gcc-c++ make python3-devel
-	    ./install.py --all
+	    ./install.py --clangd-completer
     popd
 }
 
