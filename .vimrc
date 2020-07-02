@@ -267,7 +267,7 @@ endfunction
 autocmd FileType * exec "call SetBufferMapper()"
 func! SetBufferMapper()
     let c = 0
-    while c < 20
+    while c < 9
         let c = c+1
         execute "noremap  <leader>b".c." :b ".c."<cr>"
     endwhile
