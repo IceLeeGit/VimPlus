@@ -554,9 +554,15 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'default'
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = '⭤'
+let g:airline_symbols.linenr = ''
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'short_path'
+
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_format = '%s:'
 
 """"""""""""""""""""""""""""""
 "" tabular
@@ -627,9 +633,9 @@ let g:ycm_filetype_blacklist = {
 """"""""""""""""""""""""""""""
 "" buffer
 """"""""""""""""""""""""""""""
-nnoremap <leader>bda :bufdo bd<cr>
 nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>bp :bprevious<cr>
+nnoremap <leader>bd :bdelete<cr>
 
 
 """"""""""""""""""""""""""""""
