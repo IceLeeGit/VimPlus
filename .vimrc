@@ -344,6 +344,8 @@ Plug 'Shougo/echodoc.vim'
 "强化f和F键
 Plug 'rhysd/clever-f.vim'
 Plug 'terryma/vim-smooth-scroll'
+" 查找文件
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 if version >= 800
     if exists("g:ycm") && g:ycm == 1
@@ -748,6 +750,38 @@ let g:UltiSnipsExpandTrigger="<leader><tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+""""""""""""""""""""
+"" LeaderF settings
+""""""""""""""""""""""
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.svn','.git','.hg'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
+        \ '*.tags','cscope.*']
+        \}
+
+"文件搜索
+nnoremap <silent> <Leader>ff :Leaderf file<CR>
+"历史打开过的文件
+nnoremap <silent> <Leader>fm :Leaderf mru<CR>
+"Buffer
+nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
+"函数搜索（仅当前文件里）
+nnoremap <silent> <Leader>fc :Leaderf function<CR>
+"模糊搜索，很强大的功能，迅速秒搜
+nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak}' -g '!{cscope}.*' <CR>
+
+
 
 """"""""""""""""""""""""""""""
 "" deoplete 补全
