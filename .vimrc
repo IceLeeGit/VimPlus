@@ -754,7 +754,7 @@ let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""
 "" LeaderF settings
 """"""""""""""""""""""
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>'], '<Up>': ['<Left>'], '<Down>': ['<Right>']}
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
