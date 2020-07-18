@@ -103,6 +103,12 @@ if has("autocmd")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  Resize Split When the window is resized"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+au VimResized * :wincmd =
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Remove backspace
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
@@ -121,7 +127,8 @@ nnoremap <silent> <Leader>c :set number! <Bar> :IndentLinesToggle <CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set tags=./tags;
+set tags=./tags;,tags
+set g:cache_tags = expand('~/.vim/cscope_tags')
 "map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "map <C-F12> :!ctags -R .<CR>
 
@@ -701,8 +708,8 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ f
 """"""""""""""""""""""""""""""
 let g:gutentags_plus_switch = 0
 
-let $GTAGSLABEL = 'native-pygments'
-let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
+"let $GTAGSLABEL = 'native-pygments'
+"let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
