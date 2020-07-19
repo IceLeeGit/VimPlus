@@ -128,7 +128,6 @@ nnoremap <silent> <Leader>c :set number! <Bar> :IndentLinesToggle <CR>
 " ctags and cscope
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tags=./tags;,tags
-set g:cache_tags = expand('~/.vim/cscope_tags')
 "map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "map <C-F12> :!ctags -R .<CR>
 
@@ -148,11 +147,12 @@ if has("cscope")
     elseif $CSCOPE_DB != ""
          cs add $CSCOPE_DB
     else
-        let cscope_file=findfile("cscope.out", ".;")
-        let cscope_pre=matchstr(cscope_file, ".*/")
-        if !empty(cscope_file) && filereadable(cscope_file)
-            silent! execute "cs add" cscope_file cscope_pre
-	    endif
+        let g:cstags_update = 1
+        "let cscope_file=findfile("cscope.out", ".;")
+        "let cscope_pre=matchstr(cscope_file, ".*/")
+        "if !empty(cscope_file) && filereadable(cscope_file)
+        "    silent! execute "cs add" cscope_file cscope_pre
+	    "endif
     endif
     set csverb
 endif
@@ -165,8 +165,11 @@ nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-c>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+nmap <C-c>u :UpdateCstags<CR>
+nmap <C-c>n :CreateCstags<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 自定义函数
+" 查找C头文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <leader>h :call FindHeader()<CR>
 function! FindHeader()
@@ -211,7 +214,9 @@ function! FindHeader()
     silent exe ":e ".file_list[g:num_ -1]
 endfunction
 
-
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 切换Vim背景配色
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <F12> :call ChangeColorScheme()<cr>
 function! ChangeColorScheme()
 	if !g:colors_name

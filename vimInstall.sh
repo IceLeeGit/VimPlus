@@ -18,7 +18,7 @@ sed  -i "0,/^alias/s/^alias/alias tmux='tmux -2'\nalias/1" ~/.bashrc
 source ~/.bashrc
 
 # Install vimplus
-\cp -abrf ./cscope.sh ./start_tmux.sh ./.vimrc ~/                      # tmux cscope .vimrc
+\cp -abrf ./start_tmux.sh ./.vimrc ~/                      # tmux cscope .vimrc
 
 cmd_args=""
 if [ "$1" == "gitee" ];then
@@ -35,3 +35,4 @@ if [ "$2" == "ycm" ];then
 fi
 
 vim --cmd "${cmd_args}" -c "PlugInstall" -c "q" -c "q"
+\cp -abrf ./create_cstags ~/.vim/plugged
