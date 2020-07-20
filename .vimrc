@@ -148,11 +148,11 @@ if has("cscope")
          cs add $CSCOPE_DB
     else
         let g:cstags_update = 1
-        "let cscope_file=findfile("cscope.out", ".;")
-        "let cscope_pre=matchstr(cscope_file, ".*/")
-        "if !empty(cscope_file) && filereadable(cscope_file)
-        "    silent! execute "cs add" cscope_file cscope_pre
-	    "endif
+        let cscope_file=findfile("cscope.out", ".;")
+        let cscope_pre=matchstr(cscope_file, ".*/")
+        if !empty(cscope_file) && filereadable(cscope_file)
+            silent! execute "cs add" cscope_file cscope_pre
+	    endif
     endif
     set csverb
 endif
@@ -167,6 +167,7 @@ nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 nmap <C-c>u :UpdateCstags<CR>
 nmap <C-c>n :CreateCstags<CR>
+nmap <C-c>p :DeleteCstags<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 查找C头文件

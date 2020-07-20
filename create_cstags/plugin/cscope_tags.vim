@@ -77,9 +77,36 @@ function! CreateCsTags()
     endif
 endfunction
 
+function! ClearCsTags()
+    let l:localpath = getcwd() 
+
+    for dir_name in reverse(split(l:localpath,'/')) 
+        let l:cstags_basename = substitute(l:localpath ,"/","_","g") 
+        let l:cstags_cache_path = g:cstags_path."/".l:cstags_basename
+
+        let l:cstags_root = 0
+        for dir_name in g:cstags_root_list
+            if isdirectory(l:local_path.'/'.dir_name)
+                let l:cstags_root = 1
+                break
+            endif
+        endfor
+
+        if l:cstags_root == 0 && isdirectory(l:cstags_cache_path)
+            let del_ret = delete(l:cstags_cache_path, "rf")
+            break
+        endif
+        let l:localpath = fnamemodify(l:localpath,":h")
+
+    endfor
+
+endfunction
+
+
 if g:cstags_update ==1
     execute "call UpdateCsTags()"
 endif
 
 command! UpdateCstags call UpdateCsTags()
 command! CreateCstags call CreateCsTags()
+command! DeleteCstags call ClearCsTags()
