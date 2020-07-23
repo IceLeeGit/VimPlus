@@ -292,9 +292,9 @@ endfunction
 "开始使用Vundle的必须配置
 "set rtp+=~/.vim/bundle/Vundle.vim/
 "call vundle#rc()
-
-call plug#begin('~/.vim/plugged')
-call pathogen#infect('~/.vim/plugged/{}')
+let g:vimdir = expand('~/.vim')  " 定义Vim配置目录
+call plug#begin(g:vimdir.'/plugged')
+call pathogen#infect(g:vimdir.'/plugged/{}')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -417,7 +417,7 @@ let g:showmarks_marks = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 """"""""""""""""""""""""""""""
 "" pydiction python补全
 """"""""""""""""""""""""""""""
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:pydiction_location = g:vimdir.'/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 3
 
 
@@ -735,7 +735,7 @@ endif
 set tags+=tags
 
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.vim/tags')
+let s:vim_tags = expand(g:vimdir.'/tags')
 let g:gutentags_cache_dir = s:vim_tags
 " 检测 ~/.cache/tags 不存在就新建 "
 if !isdirectory(s:vim_tags)
@@ -772,7 +772,7 @@ let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_CacheDirectory = expand(g:vimdir.'/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'powerline'
@@ -794,7 +794,14 @@ nnoremap <silent> <Leader>fc :Leaderf function<CR>
 "模糊搜索，很强大的功能，迅速秒搜
 nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak}' -g '!{cscope}.*' <CR>
 
+""""""""""""""""""""""""""""""
+"" vim-mru
+""""""""""""""""""""""""""""""
+let g:MRU_File = g:vimdir.'/vim_mru_files'
+let g:MRU_Max_Entries = 20
+let g:MRU_Include_Files = '\.c$\|\.h$\|\.py$\|\.cc$\|\.cpp$\|\.sh$'
 
+nnoremap <silent> <Leader>M :MRU<CR>
 
 """"""""""""""""""""""""""""""
 "" deoplete 补全
