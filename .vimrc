@@ -795,15 +795,6 @@ nnoremap <silent> <Leader>fc :Leaderf function<CR>
 nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak}' -g '!{cscope}.*' <CR>
 
 """"""""""""""""""""""""""""""
-"" vim-mru
-""""""""""""""""""""""""""""""
-let g:MRU_File = g:vimdir.'/vim_mru_files'
-let g:MRU_Max_Entries = 20
-let g:MRU_Include_Files = '\.c$\|\.h$\|\.py$\|\.cc$\|\.cpp$\|\.sh$'
-
-nnoremap <silent> <Leader>M :MRU<CR>
-
-""""""""""""""""""""""""""""""
 "" deoplete 补全
 """"""""""""""""""""""""""""""
 " 自启动
