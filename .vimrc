@@ -783,6 +783,12 @@ let g:Lf_WildIgnore = {
         \ '*.tags','cscope.*']
         \}
 
+let g:Lf_MruWildIgnore = {
+        \ 'dir': ['.svn','.git','.hg','.vim'],
+        \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
+        \ '*.tags','cscope.*','*.txt','*.vim*','*.conf','*.cfg']
+        \}
+
 "文件搜索
 nnoremap <silent> <Leader>ff :Leaderf file<CR>
 "历史打开过的文件
