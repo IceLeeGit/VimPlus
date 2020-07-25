@@ -380,6 +380,7 @@ call plug#end()
 "" nerdtree
 """"""""""""""""""""""""""""""
 map <C-n> :NERDTreeToggle<CR>
+nmap <Leader>N :NERDTreeFind<CR>
 ""当NERDTree为剩下的唯一窗口时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 ""打开vim时如果没有文件自动打开NERDTree
@@ -788,6 +789,8 @@ let g:Lf_MruWildIgnore = {
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
         \ '*.tags','cscope.*','*.txt','*.vim*','*.conf','*.cfg']
         \}
+
+let g:Lf_ShortcutB = '<Leader>B'
 
 "文件搜索
 nnoremap <silent> <Leader>ff :Leaderf file<CR>
