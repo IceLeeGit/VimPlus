@@ -121,7 +121,7 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 粘贴复制
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set pastetoggle=<Leader><F11>    "设置粘贴模式
+set pastetoggle=<Leader>v    "设置粘贴模式
 nnoremap <silent> <Leader>c :set number! <Bar> :IndentLinesToggle <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -284,6 +284,13 @@ func! SetBufferMapper()
         let c = c+1
         execute "noremap  <leader>b".c." :b ".c."<cr>"
     endwhile
+
+    let c = 0
+    while c < 9
+        execute "noremap  <leader>bb".c." :b 1".c."<cr>"
+        let c = c+1
+    endwhile
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
