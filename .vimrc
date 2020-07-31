@@ -282,11 +282,11 @@ func! SetBufferMapper()
     let c = 0
     while c < 9
         let c = c+1
-        execute "noremap  <leader>b".c." :b ".c."<cr>"
+        execute "nmap  <leader>b".c." <Plug>AirlineSelectTab".c
     endwhile
 
     let c = 0
-    while c < 9
+    while c <= 9
         execute "noremap  <leader>bb".c." :b 1".c."<cr>"
         let c = c+1
     endwhile
@@ -584,8 +584,12 @@ let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'short_path'
 
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+
+let g:airline#extensions#ale#enabled=1
 
 """"""""""""""""""""""""""""""
 "" tabular
