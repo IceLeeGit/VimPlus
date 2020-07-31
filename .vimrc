@@ -498,6 +498,8 @@ let g:tagbar_type_ruby = {
     \ ]
 \ }
 
+let g:tagbar_map_togglepause = 'T'
+
 
 """"""""""""""""""""""""""""""
 "" echodoc
@@ -663,6 +665,7 @@ let g:ycm_filetype_blacklist = {
 nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>bp :bprevious<cr>
 nnoremap <leader>bd :bdelete<cr>
+nnoremap <leader>bld :.+,$bdelete<cr>
 
 
 """"""""""""""""""""""""""""""
