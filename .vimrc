@@ -20,7 +20,7 @@ set ttimeoutlen=0        " 设置<ESC>键响应时间
 "set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 
 set magic                " 使用正则表达式设置
-if has("mouse") | set mouse=nc | endif    "鼠标设置
+"if has("mouse") | set mouse=nc | endif    "鼠标设置
 "autocmd InsertLeave * se nocul  " 用浅色高亮当前行
 autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
@@ -122,7 +122,7 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 " 粘贴复制
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<Leader>v    "设置粘贴模式
-nnoremap <silent> <Leader>c :set number! <Bar> :IndentLinesToggle <CR>
+nnoremap <silent> <Leader>c :call SetCopyType() <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
@@ -290,7 +290,26 @@ func! SetBufferMapper()
         execute "noremap  <leader>bb".c." :b 1".c."<cr>"
         let c = c+1
     endwhile
+endfunction
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
+" 自定义copy_type                                                               
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
+let g:copy_type=0                                                               
+autocmd vimenter * exec ":call SetCopyType()"                                   
+func! SetCopyType()                                                             
+    if g:copy_type == 1                                                         
+        set nonumber                                                            
+        IndentLinesDisable                                                      
+        set mouse=                                                              
+        let g:copy_type=0                                                       
+    else                                                                        
+        set number                                                              
+        IndentLinesEnable                                                       
+        if has("mouse") | set mouse=nc | endif    "鼠标设置                     
+        let g:copy_type=1                                                       
+    endif                                                                       
+                                                                                
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -663,7 +682,7 @@ let g:ycm_filetype_blacklist = {
 "" buffer
 """"""""""""""""""""""""""""""
 nnoremap <leader>bn :bnext<cr>
-nnoremap <leader>bp :bprevious<cr>
+nnoremap <leader>bf :bprevious<cr>
 nnoremap <leader>bd :bdelete<cr>
 nnoremap <leader>bld :.+,$bdelete<cr>
 
@@ -782,7 +801,7 @@ let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""
 "" LeaderF settings
 """"""""""""""""""""""
-let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>'], '<Up>': ['<Left>'], '<Down>': ['<Right>']}
+let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>'], '<Up>': ['<C-Left>'], '<Down>': ['<C-Right>']}
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
@@ -795,16 +814,17 @@ let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git','.hg'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
-        \ '*.tags','cscope.*']
+        \ '*.tags','cscope.*','*.rst']
         \}
 
 let g:Lf_MruWildIgnore = {
         \ 'dir': ['.svn','.git','.hg','.vim'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
-        \ '*.tags','cscope.*','*.txt','*.vim*','*.conf','*.cfg']
+        \ '*.tags','cscope.*','*.txt','*.vim*','*.conf','*.cfg','*.rst']
         \}
 
 let g:Lf_ShortcutB = '<Leader>B'
+let g:Lf_NoChdir = 0
 
 "文件搜索
 nnoremap <silent> <Leader>ff :Leaderf file<CR>
@@ -815,7 +835,7 @@ nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
 "函数搜索（仅当前文件里）
 nnoremap <silent> <Leader>fc :Leaderf function<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak}' -g '!{cscope}.*' <CR>
+nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '{tags}' <CR>
 
 """"""""""""""""""""""""""""""
 "" deoplete 补全
