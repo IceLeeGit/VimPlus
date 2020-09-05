@@ -42,7 +42,8 @@ set backspace=2          " 使用回车键正常处理indent,eol,start等
 set sidescroll=10        " 设置向右滚动字符数
 set nofoldenable         " 禁用折叠代码
 set scrolloff=7          " 代码最后保留7行，否则滚动
-set colorcolumn=81     " au FileType c,cpp,python,vim set textwidth=181
+set colorcolumn=81       " au FileType c,cpp,python,vim set textwidth=181
+hi ColorColumn guibg=#2d2d2d ctermbg=246
 set formatoptions+=mM    " 在断行、合并(join)行时，针对多字节字符（比如中文）的优化处理
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +176,7 @@ nmap <C-c>p :DeleteCstags<CR>
 nnoremap <leader>h :call FindHeader()<CR>
 function! FindHeader()
     let targetfile = ""
-    let targetpath = expand("%:h")
+    let targetpath = expand("%:p:h")
     let targetname = expand("%:t:r")
     let postfix = expand("%:e")
     if postfix == "h" || postfix == "hpp"
@@ -186,7 +187,7 @@ function! FindHeader()
         return
     endif
     let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)
-    if targetfiles == ""
+    if targetfiles == "" && match(targetpath, 'src') != -1
         let targetpath = split(targetpath,'src')[0]
         let targetfiles = system('find '.targetpath.' -type f -name '.targetfile)
     endif
@@ -302,11 +303,13 @@ func! SetCopyType()
         set nonumber                                                            
         IndentLinesDisable                                                      
         set mouse=                                                              
+        set colorcolumn=
         let g:copy_type=0                                                       
     else                                                                        
         set number                                                              
         IndentLinesEnable                                                       
         if has("mouse") | set mouse=nc | endif    "鼠标设置                     
+        set colorcolumn=81
         let g:copy_type=1                                                       
     endif                                                                       
                                                                                 
