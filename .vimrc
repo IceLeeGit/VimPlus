@@ -389,6 +389,8 @@ Plug 'terryma/vim-smooth-scroll'
 " 查找文件
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
+Plug 'liuchengxu/vim-which-key'
+
 if version >= 800
     if exists("g:ycm") && g:ycm == 1
         if g:gitee == 0
@@ -840,6 +842,54 @@ nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
 nnoremap <silent> <Leader>fc :Leaderf function<CR>
 "模糊搜索，很强大的功能，迅速秒搜
 nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '{tags}' <CR>
+
+""""""""""""""""""""""""""""""
+"" vim-which-key 
+""""""""""""""""""""""""""""""
+"nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader>d :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader>d :<c-u>WhichKeyVisual '<Space>'<CR>
+
+let g:which_key_map = {
+      \'name' : '+Command' ,
+      \"n":['<C-n>', '<ctrl+n> 打开/关闭资源管理'],
+      \"N":[':NERDTreeFind<CR>', '<,+N> 当前文件列表'],
+      \'F':['<F5>', '<,+F5> 清除文件多余空白字符'],
+      \'tb':[':Tagbar', '<tb/tl> tagbar/taglist函数列表'],
+      \'M':[':%s/<C-V><C-M>//ge<CR>', '<,+M> 清除^M特殊字符'],
+      \'m':['<ESC>', '<,+m> 高亮字符'],
+      \'h':[':call FindHeader()<CR>', '<,+h> 查找C头文件'],
+      \'|':[':Tab /\|<cr>', '<,+|> 按|对齐'],
+      \'=':[':Tab /=<cr>', '<,+=> 按=对齐'],
+      \'/':['', '<c+//> 多行注释'],
+      \'c':[':call SetCopyType()', '<,+c> 拷贝模式'],
+      \'v':[':set paste', '<,+v> 粘贴模式'],
+      \'b':['<ESC>', '<,+b[0-9]> 跳转0-9标签页'],
+      \'bb':['<ESC>', '<,+bb[0-9]> 跳转10-19标签页'],
+      \'bld':[':.+,$bdelete<cr>', '<,+bld> 删除当前标签后所有标签'],
+      \'bd':[':bdelete', '<,+bd> 删除当前标签'],
+      \'O':[':bdelete', '<MiddleMouse> 删除当前标签'],
+      \'c-6':['<ESC>', '<ctrl+6> 切换上一次打开标签'],
+      \'C':[':call ChangeColorScheme()', '<F12> 切换主题'],
+      \'tab':['<ESC>', '<ctrl+tab> 代码片段补全'],
+      \'p':['<ESC>', '<ctrl+p> 代码缓存补全'],
+      \'space':['<ESC>', '<ctrl+space> 代码YCM补全'],
+      \'cs':['<ESC>', '<c+s+"'."'> 替换双引号为单引号"],
+      \'ds':['<ESC>', '<d+s+"> 删除单引号'],
+      \'q':['<ESC>', '退出'],
+      \}
+
+let g:which_key_map['f'] = {
+      \'name' : '+Leader F' ,
+      \'f':[':Leaderf file<CR>', '<,+ff> 查找文件'],
+      \'m':[':Leaderf mru<CR>', '<,+fm> 查找最近打开文件'],
+      \'b':[':Leaderf buffer<CR>', '<,+fb> buffer内查找'],
+      \'c':[':Leaderf function<CR>', '<,+ff> 查找函数'],
+      \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>", '<,+fr> rg 全局查找'],
+      \'q':['<ESC>', '退出'],
+      \}
+
 
 """"""""""""""""""""""""""""""
 "" deoplete 补全
