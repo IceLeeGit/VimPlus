@@ -688,7 +688,8 @@ nnoremap <leader>bn :bnext<cr>
 nnoremap <leader>bf :bprevious<cr>
 nnoremap <leader>bd :bdelete<cr>
 nnoremap <leader>bld :.+,$bdelete<cr>
-
+"nnoremap <2-RightMouse> :bdelete<cr>
+nnoremap <MiddleMouse> :bdelete<cr>
 
 """"""""""""""""""""""""""""""
 "" vim-cpp-enhanced-highlight
