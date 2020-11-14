@@ -14,6 +14,12 @@ git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
 ln -s -f ~/.tmux/.tmux..conf.local ~/.tmux.conf.local
 
+
+#enable nvim config
+ln -s -f ~/.vim ~/.config/nvim
+ln -s -f ~/.vimrc ~/.config/nvim/init.vim
+
+
 sed  -i "0,/^alias/s/^alias/alias tmux='tmux -2'\nalias/1" ~/.bashrc
 source ~/.bashrc
 

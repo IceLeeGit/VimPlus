@@ -24,6 +24,8 @@ set magic                " 使用正则表达式设置
 "autocmd InsertLeave * se nocul  " 用浅色高亮当前行
 autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
+autocmd BufWritePost $MYVIMRC source $MYVIMRC  " vimrc自动加载
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -882,11 +884,11 @@ let g:which_key_map = {
 
 let g:which_key_map['f'] = {
       \'name' : '+Leader F' ,
-      \'f':[':Leaderf file<CR>', '<,+ff> 查找文件'],
-      \'m':[':Leaderf mru<CR>', '<,+fm> 查找最近打开文件'],
-      \'b':[':Leaderf buffer<CR>', '<,+fb> buffer内查找'],
-      \'c':[':Leaderf function<CR>', '<,+ff> 查找函数'],
-      \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>", '<,+fr> rg 全局查找'],
+      \'f':[':Leaderf file', '<,+ff> 查找文件'],
+      \'m':[':Leaderf mru', '<,+fm> 查找最近打开文件'],
+      \'b':[':Leaderf buffer', '<,+fb> buffer内查找'],
+      \'c':[':Leaderf function', '<,+ff> 查找函数'],
+      \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}'", '<,+fr> rg 全局查找'],
       \'q':['<ESC>', '退出'],
       \}
 
