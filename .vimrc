@@ -873,7 +873,7 @@ let g:which_key_map = {
       \'bd':[':bdelete', '<,+bd> 删除当前标签'],
       \'O':[':bdelete', '<MiddleMouse> 删除当前标签'],
       \'c-6':['<ESC>', '<ctrl+6> 切换上一次打开标签'],
-      \'C':[':call ChangeColorScheme()', '<F12> 切换主题'],
+      \'S':[':call ChangeColorScheme()', '<F12> 切换主题'],
       \'tab':['<ESC>', '<ctrl+tab> 代码片段补全'],
       \'p':['<ESC>', '<ctrl+p> 代码缓存补全'],
       \'space':['<ESC>', '<ctrl+space> 代码YCM补全'],
@@ -892,6 +892,14 @@ let g:which_key_map['f'] = {
       \'q':['<ESC>', '退出'],
       \}
 
+let g:which_key_map['C'] = {
+      \'name' : '+Cscope Tags' ,
+      \'u':[':UpdateCstags', '<ctrl+c+u> 更新cscope tags'],
+      \'n':[':CreateCstags', '<ctrl+c+n> 创建cscope tags'],
+      \'p':[':DeleteCstags', '<ctrl+c+p> 删除cscope tags'],
+      \'I':[':cscope', '<ctrl+c+[i]> cscope快捷键以及参数'],
+      \'q':['<ESC>', '退出'],
+      \}
 
 """"""""""""""""""""""""""""""
 "" deoplete 补全
