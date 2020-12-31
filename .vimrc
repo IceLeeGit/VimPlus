@@ -889,6 +889,8 @@ let g:which_key_map['f'] = {
       \'b':[':Leaderf buffer', '<,+fb> buffer内查找'],
       \'c':[':Leaderf function', '<,+ff> 查找函数'],
       \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}'", '<,+fr> rg 全局查找'],
+      \'<ctrl+left>':['', '向上查找历史'],
+      \'<ctrl+right>':['', '向下查找历史'],
       \'q':['<ESC>', '退出'],
       \}
 
