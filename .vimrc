@@ -125,7 +125,7 @@ noremap <leader>M :%s/<C-V><C-M>//ge<CR>
 " 粘贴复制
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set pastetoggle=<Leader>v    "设置粘贴模式
-nnoremap <silent> <Leader>c :call SetCopyType() <CR>
+nnoremap <silent> <C-c> :call SetCopyType() <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ctags and cscope
@@ -159,18 +159,21 @@ if has("cscope")
     endif
     set csverb
 endif
-nmap <C-c>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-c>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-c>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-c>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-c>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-c>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-c>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-nmap <C-c>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-nmap <C-c>u :UpdateCstags<CR>
-nmap <C-c>n :CreateCstags<CR>
-nmap <C-c>p :DeleteCstags<CR>
+nmap <Leader>c :cs <CR>
+nmap <Leader>cs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>ct :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>ce :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <Leader>cf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <Leader>ci :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <Leader>cd :cs find d <C-R>=expand("<cword>")<CR><CR>
+
+nmap <Leader>cu :UpdateCstags<CR>
+nmap <Leader>cn :CreateCstags<CR>
+nmap <Leader>cp :DeleteCstags<CR>
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 查找C头文件
@@ -865,7 +868,7 @@ let g:which_key_map = {
       \'|':[':Tab /\|<cr>', '<,+|> 按|对齐'],
       \'=':[':Tab /=<cr>', '<,+=> 按=对齐'],
       \'/':['', '<c+//> 多行注释'],
-      \'c':[':call SetCopyType()', '<,+c> 拷贝模式'],
+      \'c':[':call SetCopyType()', '<Ctrl+c> 拷贝模式'],
       \'v':[':set paste', '<,+v> 粘贴模式'],
       \'b':['<ESC>', '<,+b[0-9]> 跳转0-9标签页'],
       \'bb':['<ESC>', '<,+bb[0-9]> 跳转10-19标签页'],
@@ -896,10 +899,10 @@ let g:which_key_map['f'] = {
 
 let g:which_key_map['C'] = {
       \'name' : '+Cscope Tags' ,
-      \'u':[':UpdateCstags', '<ctrl+c+u> 更新cscope tags'],
-      \'n':[':CreateCstags', '<ctrl+c+n> 创建cscope tags'],
-      \'p':[':DeleteCstags', '<ctrl+c+p> 删除cscope tags'],
-      \'I':[':cscope', '<ctrl+c+[i]> cscope快捷键以及参数'],
+      \'u':[':UpdateCstags', '<,+c+u> 更新cscope tags'],
+      \'n':[':CreateCstags', '<,+c+n> 创建cscope tags'],
+      \'p':[':DeleteCstags', '<,+c+p> 删除cscope tags'],
+      \'I':[':cscope', '<,+c+[i]> cscope快捷键以及参数'],
       \'q':['<ESC>', '退出'],
       \}
 
