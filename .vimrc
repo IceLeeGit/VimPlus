@@ -846,7 +846,7 @@ nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
 "函数搜索（仅当前文件里）
 nnoremap <silent> <Leader>fc :Leaderf function<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '{tags}' <CR>
+nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
 
 """"""""""""""""""""""""""""""
 "" vim-which-key 
