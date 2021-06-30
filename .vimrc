@@ -634,6 +634,8 @@ nnoremap <leader>= :Tab /=<cr>
 " 如果不指定python解释器路径，ycm会自己搜索一个合适的(与编译ycm时使用的python版本匹配)
 " let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 let g:ycm_auto_trigger = 0  " 打开/关闭自动触发补全 ctrl space 手动触发补全
+let g:ycm_global_ycm_extra_conf=expand(g:vimdir.'/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py')
+let g:ycm_show_diagnostics_ui = 0    "关闭语法校验
 let g:ycm_min_num_of_chars_for_completion = 5
 let g:ycm_confirm_extra_conf = 0
 let g:ycm_error_symbol = '✗'
