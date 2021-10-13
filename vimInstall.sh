@@ -1,8 +1,25 @@
 #!/usr/bin/sh
 
-# Install softwares
 
-sudo yum install vim git tmux ctags cscope -y
+source /etc/os-release
+case $ID in
+debian|ubuntu|devuan)
+    sudo apt-get install vim neovim git tmux universal-ctags cscope
+    ;;
+centos|fedora|rhel)
+    yumdnf="yum"
+    if test "$(echo "$VERSION_ID >= 22" | bc)" -ne 0; then
+        yumdnf="dnf"
+    fi
+    sudo $yumdnf install -y vim neovim git tmux universal-ctags cscope
+    ;;
+*)
+    exit 1
+    ;;
+esac
+
+#install nodejs
+./install-node.now.sh
 
 # Config bundle
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
