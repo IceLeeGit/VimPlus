@@ -840,15 +840,15 @@ let g:Lf_ShortcutB = '<Leader>B'
 let g:Lf_NoChdir = 0
 
 "文件搜索
-nnoremap <silent> <Leader>ff :Leaderf file<CR>
+nnoremap <silent> <Leader>ff :Leaderf file --cword<CR>
 "历史打开过的文件
-nnoremap <silent> <Leader>fm :Leaderf mru<CR>
+nnoremap <silent> <Leader>fm :Leaderf mru --cword<CR>
 "Buffer
-nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
+nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 "函数搜索（仅当前文件里）
-nnoremap <silent> <Leader>fc :Leaderf function<CR>
+nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fr :Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+nnoremap <silent> <Leader>fr :Leaderf rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
 
 """"""""""""""""""""""""""""""
 "" vim-which-key 
