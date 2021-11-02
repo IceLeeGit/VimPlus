@@ -842,7 +842,7 @@ let g:Lf_NoChdir = 0
 "文件搜索
 nnoremap <silent> <Leader>ff :Leaderf file --cword<CR>
 "历史打开过的文件
-nnoremap <silent> <Leader>fm :Leaderf mru --cword<CR>
+nnoremap <silent> <Leader>fm :Leaderf mru<CR>
 "Buffer
 nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 "函数搜索（仅当前文件里）
