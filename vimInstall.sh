@@ -1,8 +1,23 @@
 #!/usr/bin/sh
 
-# Install softwares
+set -e
 
-sudo yum install vim git tmux ctags cscope -y
+# Get Install CMD
+if [ -x "/usr/bin/yum" ];then
+    YumCmd="/usr/bin/yum"
+elif [ -x "/usr/bin/apt" ]; then
+    YumCmd="/usr/bin/apt"
+else
+    echo "Not found the OS type(Centos/Ubuntu)."
+    exit 1
+fi
+
+# Install softwares
+if [ -f "/usr/bin/sudo" ];then
+    sudo ${YumCmd} install vim git tmux ctags cscope -y
+else
+    ${YumCmd} install vim git tmux ctags cscope -y
+fi
 
 # Config bundle
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -12,10 +27,11 @@ sudo yum install vim git tmux ctags cscope -y
 # Config tmux
 git clone https://github.com/gpakosz/.tmux.git ~/.tmux
 ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
-ln -s -f ~/.tmux/.tmux..conf.local ~/.tmux.conf.local
+ln -s -f ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
 
 
 #enable nvim config
+\mkdir -p ~/.config/nvim
 ln -s -f ~/.vim ~/.config/nvim
 ln -s -f ~/.vimrc ~/.config/nvim/init.vim
 
@@ -25,6 +41,10 @@ source ~/.bashrc
 
 # Install vimplus
 \cp -abrf ./start_tmux.sh ./.vimrc ~/                      # tmux cscope .vimrc
+
+
+# Install nodejs
+curl -sL install-node.vercel.app/lts | bash
 
 cmd_args=""
 if [ "$1" == "gitee" ];then

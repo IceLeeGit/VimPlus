@@ -298,26 +298,30 @@ func! SetBufferMapper()
     endwhile
 endfunction
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
-" 自定义copy_type                                                               
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
-let g:copy_type=0                                                               
-autocmd vimenter * exec ":call SetCopyType()"                                   
-func! SetCopyType()                                                             
-    if g:copy_type == 1                                                         
-        set nonumber                                                            
-        IndentLinesDisable                                                      
-        set mouse=                                                              
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 自定义copy_type
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:copy_type=0
+autocmd vimenter * exec ":call SetCopyType()"
+func! SetCopyType()
+    if g:copy_type == 1
+        set nonumber
+        if exists(":IndentLinesDisable")
+            IndentLinesDisable
+        endif
+        set mouse=
         set colorcolumn=
-        let g:copy_type=0                                                       
-    else                                                                        
-        set number                                                              
-        IndentLinesEnable                                                       
-        if has("mouse") | set mouse=nc | endif    "鼠标设置                     
+        let g:copy_type=0
+    else
+        set number
+        if exists(":IndentLinesEnable")
+            IndentLinesEnable
+        endif
+        if has("mouse") | set mouse=nc | endif    "鼠标设置
         set colorcolumn=81
-        let g:copy_type=1                                                       
-    endif                                                                       
-                                                                                
+        let g:copy_type=1
+    endif
+
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -327,8 +331,8 @@ endfunction
 "set rtp+=~/.vim/bundle/Vundle.vim/
 "call vundle#rc()
 let g:vimdir = expand('~/.vim')  " 定义Vim配置目录
-call plug#begin(g:vimdir.'/plugged')
-call pathogen#infect(g:vimdir.'/plugged/{}')
+silent! call plug#begin(g:vimdir.'/plugged')
+silent! call pathogen#infect(g:vimdir.'/plugged/{}')
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -373,7 +377,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround'
 
 "ctrl+p
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 "Syntax
 Plug 'justinmk/vim-syntax-extra'
@@ -403,11 +407,11 @@ if version >= 800
         else
             Plug 'https://gitee.com/Icey9/YouCompleteMe.git', { 'do': './install.py' }
         endif
-    endi
+    endif
     Plug 'ludovicchabant/vim-gutentags'
-    "Plug 'Shougo/deoplete.nvim'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
-call plug#end()
+silent! call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " config
@@ -851,10 +855,10 @@ nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 nnoremap <silent> <Leader>fr :Leaderf rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
 
 """"""""""""""""""""""""""""""
-"" vim-which-key 
+"" vim-which-key
 """"""""""""""""""""""""""""""
 "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-call which_key#register('<Space>', "g:which_key_map")
+silent! call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader>d :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader>d :<c-u>WhichKeyVisual '<Space>'<CR>
 
@@ -909,36 +913,16 @@ let g:which_key_map['C'] = {
       \}
 
 """"""""""""""""""""""""""""""
-"" deoplete 补全
+"" coc.nvim
 """"""""""""""""""""""""""""""
-" 自启动
-"let g:deoplete#enable_at_startup = 1
-"" smart case不解释
-"let g:deoplete#enable_smart_case = 1
-"
-"" 用户输入至少两个字符时再开始提示补全
-"call deoplete#custom#source('LanguageClient',
-"            \ 'min_pattern_length',
-"            \ 2)
-"
-"" 字符串中不补全
-"call deoplete#custom#source('_',
-"            \ 'disabled_syntaxes', ['String']
-"            \ )
-"
-"" 补全结束或离开插入模式时，关闭预览窗口
-"autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-"
-"" 为每个语言定义completion source
-"" 是的vim script和zsh script都有，这就是deoplete
-"call deoplete#custom#option('sources', {
-"            \ 'cpp': ['LanguageClient'],
-"            \ 'c': ['LanguageClient'],
-"            \ 'vim': ['vim'],
-"            \ 'zsh': ['zsh']
-"            \})
-"
-"" 忽略一些没意思的completion source。
-"let g:deoplete#ignore_sources = {}
-"let g:deoplete#ignore_sources._ = ['buffer', 'around']
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+  else
+    inoremap <silent><expr> <c-@> coc#refresh()
+    endif
+
+" Use <Tab> and <S-Tab> to navigate the completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>""
 
