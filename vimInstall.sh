@@ -35,6 +35,10 @@ ln -s -f ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
 ln -s -f ~/.vim ~/.config/nvim
 ln -s -f ~/.vimrc ~/.config/nvim/init.vim
 
+# Config Coc config
+\cp -abf ./coc-settings.json ~/.vim/coc-settings.json
+
+
 
 sed  -i "0,/^alias/s/^alias/alias tmux='tmux -2'\nalias/1" ~/.bashrc
 source ~/.bashrc

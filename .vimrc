@@ -915,6 +915,14 @@ let g:which_key_map['C'] = {
 """"""""""""""""""""""""""""""
 "" coc.nvim
 """"""""""""""""""""""""""""""
+" 自动加载coc插件
+let g:coc_global_extensions = [
+                        \'coc-json', 'coc-css', 'coc-yank', 'coc-yaml',
+                        \'coc-clangd', 'coc-jedi', 'coc-json', 'coc-python',
+                        \'coc-markdownlint', 'coc-marketplace', 'coc-syntax',
+                        \'coc-xml'
+                        \]
+
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()
