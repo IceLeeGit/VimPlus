@@ -923,6 +923,7 @@ let g:coc_global_extensions = [
                         \'coc-xml'
                         \]
 
+let g:coc_disable_startup_warning = 1
 " Use <c-space> to trigger completion.
 if has('nvim')
   inoremap <silent><expr> <c-space> coc#refresh()

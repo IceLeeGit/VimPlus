@@ -25,9 +25,9 @@ fi
 \cp -abrf ./autoload/* ~/.vim/autoload/
 
 # Config tmux
-git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
-ln -s -f ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
+#git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+#ln -s -f ~/.tmux/.tmux.conf ~/.tmux.conf
+#ln -s -f ~/.tmux/.tmux.conf.local ~/.tmux.conf.local
 
 
 #enable nvim config
