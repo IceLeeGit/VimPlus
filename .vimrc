@@ -400,6 +400,8 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 Plug 'liuchengxu/vim-which-key'
 
+Plug 'tpope/vim-fugitive'
+
 if version >= 800
     if exists("g:ycm") && g:ycm == 1
         if g:gitee == 0
