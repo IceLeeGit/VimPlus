@@ -22,6 +22,9 @@ fi
 # Config bundle
 # curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 \mkdir -p ~/.vim/autoload
+
+# Install plug.vim
+#curl -fLo ~/.vim/autoload/plug.vim --create-dirs     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 \cp -abrf ./autoload/* ~/.vim/autoload/
 
 # Config tmux
