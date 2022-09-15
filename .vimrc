@@ -828,7 +828,10 @@ let g:Lf_WindowHeight = 0.30
 let g:Lf_CacheDirectory = expand(g:vimdir.'/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
-let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_StlColorscheme = 'airline'
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git','.hg'],
@@ -854,7 +857,7 @@ nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 "函数搜索（仅当前文件里）
 nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fr :Leaderf rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+nnoremap <silent> <Leader>fr :Leaderf --regexMode rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
 
 """"""""""""""""""""""""""""""
 "" vim-which-key
