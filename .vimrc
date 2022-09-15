@@ -827,12 +827,24 @@ let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
 let g:Lf_CacheDirectory = expand(g:vimdir.'/cache')
 let g:Lf_ShowRelativePath = 0
+let g:Lf_DefaultExternalTool='rg'
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'airline'
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_PreviewResult = {
+        \ 'File': 0,
+        \ 'Buffer': 0,
+        \ 'Mru': 0,
+        \ 'Tag': 0,
+        \ 'BufTag': 1,
+        \ 'Function': 1,
+        \ 'Line': 1,
+        \ 'Colorscheme': 0,
+        \ 'Rg': 0,
+        \ 'Gtags': 0
+        \}
 let g:Lf_WildIgnore = {
         \ 'dir': ['.svn','.git','.hg'],
         \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]',
@@ -905,6 +917,8 @@ let g:which_key_map['f'] = {
       \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}'", '<,+fr> rg 全局查找'],
       \'<ctrl+left>':['', '向上查找历史'],
       \'<ctrl+right>':['', '向下查找历史'],
+      \'<ctrl+r>':['', '切换模式模糊匹配或者正则匹配 Fuzzy\Regex'],
+      \'<ctrl+f>':['', '切换模式全路徑或者名字 fullPath\nameOnly'],
       \'q':['<ESC>', '退出'],
       \}
 

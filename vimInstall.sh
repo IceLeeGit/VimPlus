@@ -14,9 +14,9 @@ fi
 
 # Install softwares
 if [ -f "/usr/bin/sudo" ];then
-    sudo ${YumCmd} install vim git tmux ctags cscope -y
+    sudo ${YumCmd} install vim git tmux ctags cscope ripgrep -y
 else
-    ${YumCmd} install vim git tmux ctags cscope -y
+    ${YumCmd} install vim git tmux ctags cscope ripgrep -y
 fi
 
 # Config bundle
