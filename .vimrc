@@ -766,6 +766,7 @@ let g:NERDTreeExtensionHighlightColor['c++'] = s:green " sets the color of c++ f
 "vim-gutentags 自动创建tags
 """"""""""""""""""""""""""""""
 let g:gutentags_plus_switch = 0
+let g:gutentags_plus_nomap = 1
 
 "let $GTAGSLABEL = 'native-pygments'
 "let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
@@ -796,12 +797,12 @@ if !isdirectory(s:vim_tags)
 endif
 
 " 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extras=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 " 如果使用 universal ctags 需要增加下面一行
-"let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 
 " 禁用 gutentags 自动加载 gtags 数据库的行为
 " 避免多个项目数据库相互干扰
@@ -831,7 +832,9 @@ let g:Lf_DefaultExternalTool='rg'
 let g:Lf_HideHelp = 1
 let g:Lf_StlColorscheme = 'airline'
 let g:Lf_WindowPosition = 'popup'
+let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewResult = {'BufTag': 1}
 let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
 let g:Lf_PreviewResult = {
         \ 'File': 0,
@@ -870,6 +873,8 @@ nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 "模糊搜索，很强大的功能，迅速秒搜
 nnoremap <silent> <Leader>fr :Leaderf --regexMode rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+"打开上一次搜索
+nnoremap <silent> <Leader>fh :Leaderf --recall<CR>
 
 """"""""""""""""""""""""""""""
 "" vim-which-key
@@ -914,6 +919,7 @@ let g:which_key_map['f'] = {
       \'m':[':Leaderf mru', '<,+fm> 查找最近打开文件'],
       \'b':[':Leaderf buffer', '<,+fb> buffer内查找'],
       \'c':[':Leaderf function', '<,+ff> 查找函数'],
+      \'h':[':Leaderf --recall', '<,+fh> 返回上次查找'],
       \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}'", '<,+fr> rg 全局查找'],
       \'<ctrl+left>':['', '向上查找历史'],
       \'<ctrl+right>':['', '向下查找历史'],
