@@ -924,7 +924,8 @@ let g:which_key_map['f'] = {
       \'r':[":Leaderf rg -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}'", '<,+fr> rg 全局查找'],
       \'<ctrl+left>':['', '向上查找历史'],
       \'<ctrl+right>':['', '向下查找历史'],
-      \'<ctrl+r>':['', '切换模式模糊匹配或者正则匹配 Fuzzy\Regex'],
+      \'<ctrl+g>':['', '切换模式模糊匹配或者正则匹配 Fuzzy\Regex'],
+      \'<ctrl+r>':['', '精确匹配 Regex'],
       \'<ctrl+f>':['', '切换模式全路徑或者名字 fullPath\nameOnly'],
       \'q':['<ESC>', '退出'],
       \}
