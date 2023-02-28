@@ -872,7 +872,8 @@ nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 "函数搜索（仅当前文件里）
 nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fr :Leaderf --regexMode rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+nnoremap <silent> <Leader>fg :Leaderf --regexMode rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+nnoremap <silent> <Leader>fr :<C-U><C-R>=printf("Leaderf rg --regexMode -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' -w %s --cword", expand("<cword>"))<CR><CR>
 "打开上一次搜索
 nnoremap <silent> <Leader>fh :Leaderf --recall<CR>
 
