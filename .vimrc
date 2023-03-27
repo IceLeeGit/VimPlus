@@ -784,7 +784,7 @@ let g:gutentags_plus_nomap = 1
 "let $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
 " gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_project_root = ['root', '.svn', '.git', '.hg', '.project']
 
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile = '.tags'
@@ -794,7 +794,7 @@ let g:gutentags_modules = []
 if executable('ctags')
     let g:gutentags_modules += ['ctags']
 endif
-if executable('gtags_cscope') && executable('gtags')
+if executable('gtags-cscope') && executable('gtags')
     let g:gutentags_modules += ['gtags_cscope']
 endif
 
@@ -820,6 +820,7 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " 避免多个项目数据库相互干扰
 " 使用plus插件解决问题
 let g:gutentags_auto_add_gtags_cscope = 0
+let g:Gtags_No_Auto_Jump = 1
 
 
 """"""""""""""""""""
@@ -884,7 +885,7 @@ nnoremap <silent> <Leader>fb :Leaderf buffer --cword<CR>
 "函数搜索（仅当前文件里）
 nnoremap <silent> <Leader>fc :Leaderf function --cword<CR>
 "模糊搜索，很强大的功能，迅速秒搜
-nnoremap <silent> <Leader>fg :Leaderf --regexMode rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
+nnoremap <silent> <Leader>fg :Leaderf --fuzzy rg --cword -g '!*.{tags,log,bak,rst,txt,md,conf}' -g '!{cscope}.*' -g '!{tags}' <CR>
 nnoremap <silent> <Leader>fr :<C-U><C-R>=printf("Leaderf rg --regexMode -g '!*.{tags,log,bak,rst,txt,md,conf,git,svn,hg}' -g '!{cscope}.*' -g '!{tags}' -w %s --cword", expand("<cword>"))<CR><CR>
 "打开上一次搜索
 nnoremap <silent> <Leader>fh :Leaderf --recall<CR>
