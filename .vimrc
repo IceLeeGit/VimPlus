@@ -321,6 +321,9 @@ func! SetCopyType()
         if exists(":IndentLinesDisable")
             IndentLinesDisable
         endif
+        if exists(":ALEDisable")
+            ALEDisable
+        endif
         set mouse=
         set colorcolumn=
         let g:copy_type=0
@@ -328,6 +331,9 @@ func! SetCopyType()
         set number
         if exists(":IndentLinesEnable")
             IndentLinesEnable
+        endif
+        if exists(":ALEEnable")
+            ALEEnable
         endif
         if has("mouse") | set mouse=nc | endif    "鼠标设置
         set colorcolumn=81
