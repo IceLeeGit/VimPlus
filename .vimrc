@@ -26,6 +26,8 @@ autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 autocmd BufWritePost $MYVIMRC source $MYVIMRC  " vimrc自动加载
 
+set t_BE= t_EE=           " vim 禁用bracketed paste 模式
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
