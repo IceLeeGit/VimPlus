@@ -26,6 +26,10 @@ autocmd InsertEnter * se cul    " 用浅色高亮当前行
 
 autocmd BufWritePost $MYVIMRC source $MYVIMRC  " vimrc自动加载
 
+if &diff
+    colorscheme evening  " 或使用 murphy, ron, peachpuff 等
+endif
+
 set t_BE= t_EE=           " vim 禁用bracketed paste 模式
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
