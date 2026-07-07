@@ -122,6 +122,16 @@ au VimResized * :wincmd =
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
+function! ClearTrailSpace()
+    let save_search = @/
+    '<,'>s/\s\+$//e
+    let @/ = save_search
+    nohl
+    unlet save_search
+endfunction
+
+vnoremap <silent> <F5> :call ClearTrailSpace()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 移除 Windows 文件结尾的 `^M`
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -316,6 +326,7 @@ func! SetCopyType()
         IndentLinesDisable                                                      
         set mouse=                                                              
         set colorcolumn=
+        set nocul
         let g:saved_color=g:colors_name
         colorscheme default
         let g:copy_type=0                                                       
@@ -324,6 +335,7 @@ func! SetCopyType()
         IndentLinesEnable                                                       
         if has("mouse") | set mouse=nc | endif    "鼠标设置                     
         set colorcolumn=81
+        set cul
         silent! execute "colorscheme ".g:saved_color
         let g:copy_type=1                                                       
     endif                                                                       
