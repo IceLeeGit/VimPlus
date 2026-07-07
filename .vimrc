@@ -307,7 +307,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
 " 自定义copy_type                                                               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""         
-let g:copy_type=0                                                               
+let g:copy_type=0
+let g:saved_color='devbox-dark-256'
 autocmd vimenter * exec ":call SetCopyType()"                                   
 func! SetCopyType()                                                             
     if g:copy_type == 1                                                         
@@ -315,12 +316,15 @@ func! SetCopyType()
         IndentLinesDisable                                                      
         set mouse=                                                              
         set colorcolumn=
+        let g:saved_color=g:colors_name
+        colorscheme default
         let g:copy_type=0                                                       
     else                                                                        
         set number                                                              
         IndentLinesEnable                                                       
         if has("mouse") | set mouse=nc | endif    "鼠标设置                     
         set colorcolumn=81
+        silent! execute "colorscheme ".g:saved_color
         let g:copy_type=1                                                       
     endif                                                                       
                                                                                 
